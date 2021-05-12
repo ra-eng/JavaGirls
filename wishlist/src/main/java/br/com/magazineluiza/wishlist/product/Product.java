@@ -1,6 +1,6 @@
-package br.com.javagirls.wishlist.product;
+package br.com.magazineluiza.wishlist.product;
 
-import br.com.javagirls.wishlist.wishlist.Wishlist;
+import br.com.magazineluiza.wishlist.wishlist.Wishlist;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -61,9 +61,5 @@ public class Product {
 
     public void setDetails(String details) {
         this.details = details;
-    }
-
-    public void addProduct(){
-
     }
 }

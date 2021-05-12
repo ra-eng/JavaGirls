@@ -1,6 +1,6 @@
-package br.com.javagirls.wishlist.product;
+package br.com.magazineluiza.wishlist.product;
 
-import br.com.javagirls.wishlist.common.ApiResponse;
+import br.com.magazineluiza.wishlist.common.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

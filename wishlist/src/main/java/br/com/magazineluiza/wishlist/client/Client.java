@@ -1,4 +1,4 @@
-package br.com.javagirls.wishlist.client;
+package br.com.magazineluiza.wishlist.client;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -1,4 +1,4 @@
-package br.com.javagirls.wishlist.common;
+package br.com.magazineluiza.wishlist.common;
 
 import java.time.LocalDateTime;
 

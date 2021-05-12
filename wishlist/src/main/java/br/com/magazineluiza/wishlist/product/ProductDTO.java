@@ -1,4 +1,4 @@
-package br.com.javagirls.wishlist.product;
+package br.com.magazineluiza.wishlist.product;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;

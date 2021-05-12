@@ -1,7 +1,7 @@
-package br.com.javagirls.wishlist.wishlist;
+package br.com.magazineluiza.wishlist.wishlist;
 
-import br.com.javagirls.wishlist.client.Client;
-import br.com.javagirls.wishlist.product.Product;
+import br.com.magazineluiza.wishlist.client.Client;
+import br.com.magazineluiza.wishlist.product.Product;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;

@@ -1,4 +1,4 @@
-package br.com.javagirls.wishlist;
+package br.com.magazineluiza.wishlist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

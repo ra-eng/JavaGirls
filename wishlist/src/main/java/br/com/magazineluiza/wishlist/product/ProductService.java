@@ -1,4 +1,4 @@
-package br.com.javagirls.wishlist.product;
+package br.com.magazineluiza.wishlist.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
