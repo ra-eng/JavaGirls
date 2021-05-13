@@ -25,10 +25,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, BigDecimal price, String details) {
-        this.name = name;
-        this.price = price;
-        this.details = details;
+    public Product(ProductDTO productDTO) {
+        this.name = productDTO.getName();
+        this.price = productDTO.getPrice();
+        this.details = productDTO.getDetails();
     }
 
     public Integer getId() {

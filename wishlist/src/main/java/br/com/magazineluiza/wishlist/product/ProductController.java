@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/products")
 public class ProductController {
     @Autowired
     ProductService productService;
@@ -18,8 +18,8 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addProduct(@RequestBody Product product){
-        productService.addProduct(product);
+    public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDTO productDTO){
+        productService.addProduct(productDTO);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
     }
 }
