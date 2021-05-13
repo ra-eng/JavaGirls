@@ -11,18 +11,6 @@ public class ProductDTO {
     private @NotNull BigDecimal price;
     private @NotNull String details;
 
-    public ProductDTO(Product product) {
-        this.name  = product.getName();
-        this.price = product.getPrice();
-        this.details = product.getDetails();
-    }
-
-    public ProductDTO(String name, BigDecimal price, String details) {
-        this.name = name;
-        this.price = price;
-        this.details = details;
-    }
-
     public String getName() {
         return name;
     }
