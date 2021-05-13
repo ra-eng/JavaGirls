@@ -1,22 +1,33 @@
 package br.com.magazineluiza.wishlist.product;
 
 import br.com.magazineluiza.wishlist.common.ApiResponse;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+//@Api(value = "Product")
 @RequestMapping(value = "/products")
 public class ProductController {
     @Autowired
     ProductService productService;
 
     private ProductRepository productRepository;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
+    @GetMapping
+    public List<Product> getProducts(){
+        return productService.getProducs();
+    }
+
+   // @ApiOperation(value = "Adicionar Produto")
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDTO productDTO){
         productService.addProduct(productDTO);
