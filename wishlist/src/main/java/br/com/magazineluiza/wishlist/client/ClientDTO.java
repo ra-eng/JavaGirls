@@ -1,36 +1,21 @@
 package br.com.magazineluiza.wishlist.client;
 
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "client")
-public class Client {
+public class ClientDTO {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private @NotNull String cpf;
     private @NotNull String name;
     private @NotNull String email;
     private @NotNull String password;
 
-    public Client() {
-    }
-
-    public Client(ClientDTO clientDTO) {
-        this.cpf = clientDTO.getCpf();
-        this.name = clientDTO.getName();
-        this.email = clientDTO.getEmail();
-        this.password = clientDTO.getPassword();
-    }
-
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
