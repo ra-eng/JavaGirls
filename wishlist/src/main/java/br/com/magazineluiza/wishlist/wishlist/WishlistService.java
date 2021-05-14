@@ -2,7 +2,10 @@ package br.com.magazineluiza.wishlist.wishlist;
 
 import org.springframework.stereotype.Service;
 
-@Service
-public class WishlistService {
+import javax.transaction.Transactional;
 
+@Service
+@Transactional
+public class WishlistService {
+    public WishlistService()
 }

@@ -38,20 +38,40 @@ public class Wishlist {
         this.createdDate = new Date();
     }
 
-    public void addProduct(Product product){
-
+    public Integer getId() {
+        return id;
     }
 
-    public void deleteProduct(){
-
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void findAllProducts(){
-
+    public Client getClient() {
+        return client;
     }
 
-    public void findProduct(){
+    public void setClient(Client client) {
+        this.client = client;
+    }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public int getMaxProducts() {
+        return maxProducts;
     }
 
 }
