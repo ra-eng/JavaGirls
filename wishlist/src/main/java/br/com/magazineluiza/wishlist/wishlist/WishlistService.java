@@ -1,31 +1,29 @@
 package br.com.magazineluiza.wishlist.wishlist;
 
-import br.com.magazineluiza.wishlist.product.ProductDTO;
+import br.com.magazineluiza.wishlist.client.Client;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class WishlistService {
 
-    private final WishlistRepository wishlistRepository;
+    @Autowired
+    private WishlistRepository wishlistRepository;
 
-    public WishlistService(WishlistRepository wishlistRepository) {
-        this.wishlistRepository = wishlistRepository;
+    public void addProductTo(Wishlist wishlist) {
+        wishlistRepository.save(wishlist);
     }
 
     public void createWishlist(Wishlist wishlist) {
         wishlistRepository.save(wishlist);
     }
 
-    public List<Wishlist>  readWishlist(Integer clientId) {
-        return wishlistRepository.findAllByUserIdOrderByCreatedDateDesc(clientId);
+    public List<Wishlist> readWishList(Client client) {
+        return wishlistRepository.findAllByClientOrderByCreatedDateDesc(client);
     }
-
-
-
-
-
 }

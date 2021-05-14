@@ -1,8 +1,6 @@
 package br.com.magazineluiza.wishlist.product;
 
 import br.com.magazineluiza.wishlist.common.ApiResponse;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +22,7 @@ public class ProductController {
 
     @GetMapping
     public List<Product> getProducts(){
-        return productService.getProducs();
+        return productService.getProducts();
     }
 
    // @ApiOperation(value = "Adicionar Produto")

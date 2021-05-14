@@ -2,14 +2,28 @@ package br.com.magazineluiza.wishlist.product;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductDTO {
 
+    private @NotNull Integer id;
     private @NotNull String name;
     private @NotNull BigDecimal price;
     private @NotNull String details;
+
+    public ProductDTO(Product product) {
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.details = product.getDetails();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

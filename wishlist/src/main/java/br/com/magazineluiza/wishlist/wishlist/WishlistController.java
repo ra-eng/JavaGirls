@@ -1,6 +1,8 @@
 package br.com.magazineluiza.wishlist.wishlist;
 
+import br.com.magazineluiza.wishlist.client.Client;
 import br.com.magazineluiza.wishlist.common.ApiResponse;
+import br.com.magazineluiza.wishlist.product.Product;
 import br.com.magazineluiza.wishlist.product.ProductDTO;
 import br.com.magazineluiza.wishlist.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,14 @@ public class WishlistController {
 
     @Autowired
     private WishlistService wishlistService;
+
     @Autowired
     private ClientService clientService;
 
     @GetMapping("/{clientId}")
     public ResponseEntity<List<ProductDTO>> getWishlist(@PathVariable("clientId") Integer clientId){
-        int id = clientService.findClientByID(clientId);
-        List<Wishlist> body = wishlistService.readWishList(clientId);
+        Client client = clientService.findClient(clientId);
+        List<Wishlist> body = wishlistService.readWishList(client);
         List<ProductDTO> products = new ArrayList<>();
         for (Wishlist wishlist : body) {
             products.add(ProductService.getDtoFromProduct(wishlist.getProduct()));
@@ -30,11 +33,13 @@ public class WishlistController {
         return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
     }
 
-       /* @PostMapping ("/add")
-        public ResponseEntity<ApiResponse> addProduct (@RequestBody ProductDTO productDTO){
-            WishlistService.addProduct(productDTO);
-            return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
-
-
-        }*/
+        @PostMapping("/{clientId}")
+        public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDTO productDTO, @PathVariable("clientId") Integer clientId){
+            Client client = clientService.findClient(clientId);
+            Product product = new Product(productDTO);
+            Wishlist wishlist = new Wishlist(client,product);
+            wishlistService.addProductTo(wishlist);
+            return new ResponseEntity<ApiResponse>(new ApiResponse(true,
+                    "Product has been added to Wishlist"), HttpStatus.CREATED);
+        }
     }
