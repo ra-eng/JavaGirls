@@ -26,7 +26,7 @@ public class ProductController {
     }
 
    // @ApiOperation(value = "Adicionar Produto")
-    @PostMapping("/add")
+    @PostMapping
     public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDTO productDTO){
         productService.addProduct(productDTO);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);

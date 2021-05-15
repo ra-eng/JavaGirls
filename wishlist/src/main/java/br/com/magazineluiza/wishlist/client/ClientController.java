@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
@@ -16,8 +18,8 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @PostMapping("/add")
-    public ResponseEntity<ApiResponse> addClient(@RequestBody ClientDTO clientDTO){
+    @PostMapping
+    public ResponseEntity<ApiResponse> addClient(@RequestBody @Valid ClientDTO clientDTO){
         clientService.addClient(clientDTO);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Client has been added"), HttpStatus.CREATED);
     }

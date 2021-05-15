@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "wishlist")
@@ -14,13 +15,11 @@ public class Wishlist {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(targetEntity = Client.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "cliente_id")
+    @OneToOne(mappedBy = "wishlist")
     private Client client;
 
-    @ManyToOne()
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @ManyToMany(mappedBy = "wishlists")
+    private List<Product> products;
 
     @Column(name = "created_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
@@ -32,9 +31,8 @@ public class Wishlist {
 
     }
 
-    public Wishlist(Client client, Product product) {
+    public Wishlist(Client client) {
         this.client = client;
-        this.product = product;
         this.createdDate = new Date();
     }
 
@@ -54,24 +52,12 @@ public class Wishlist {
         this.client = client;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public Date getCreatedDate() {
         return createdDate;
     }
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public int getMaxProducts() {
-        return maxProducts;
     }
 
 }

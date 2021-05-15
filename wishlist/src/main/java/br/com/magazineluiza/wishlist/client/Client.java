@@ -1,8 +1,9 @@
 package br.com.magazineluiza.wishlist.client;
 
 
+import br.com.magazineluiza.wishlist.wishlist.Wishlist;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "client")
@@ -11,10 +12,15 @@ public class Client {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private @NotNull String cpf;
-    private @NotNull String name;
-    private @NotNull String email;
-    private @NotNull String password;
+    @OneToOne
+    @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
+    private Wishlist wishlist;
+
+    @Column(unique = true)
+    private String cpf;
+    private String name;
+    private String email;
+    private String password;
 
     public Client() {
     }
@@ -24,6 +30,7 @@ public class Client {
         this.name = clientDTO.getName();
         this.email = clientDTO.getEmail();
         this.password = clientDTO.getPassword();
+        this.wishlist = new Wishlist();
     }
 
     public Integer getId() {
@@ -64,5 +71,13 @@ public class Client {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
     }
 }

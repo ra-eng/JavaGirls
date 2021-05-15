@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -19,8 +18,10 @@ public class WishlistService {
         wishlistRepository.save(wishlist);
     }
 
-    public void createWishlist(Wishlist wishlist) {
-        wishlistRepository.save(wishlist);
+    public Integer createWishlist(Wishlist wishlist) {
+        Wishlist wishlistCreated = wishlistRepository.save(wishlist);
+        return wishlistCreated.getId();
+
     }
 
     public List<Wishlist> readWishList(Client client) {

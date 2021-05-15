@@ -1,15 +1,23 @@
 package br.com.magazineluiza.wishlist.client;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 public class ClientDTO {
 
     private int id;
 
-    private @NotNull String cpf;
-    private @NotNull String name;
-    private @NotNull String email;
-    private @NotNull String password;
+    @NotNull
+    private String cpf;
+
+    @NotNull
+    private String name;
+
+    @NotNull @Email
+    private String email;
+
+    @NotNull
+    private String password;
 
     public int getId() {
         return id;

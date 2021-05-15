@@ -17,8 +17,11 @@ public class Product {
     private @NotNull BigDecimal price;
     private @NotNull String details;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
-    private List<Wishlist> wishlistList;
+    @ManyToMany
+    @JoinTable(name = "product_wishlist",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "wishlist_id"))
+    private List<Wishlist> wishlists;
 
 //    private @NotNull String image;
 
