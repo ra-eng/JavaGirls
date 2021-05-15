@@ -10,6 +10,9 @@ public class ProductDTO {
     private @NotNull BigDecimal price;
     private @NotNull String details;
 
+    public ProductDTO() {
+    }
+
     public ProductDTO(Product product) {
         this.id = product.getId();
         this.name = product.getName();
