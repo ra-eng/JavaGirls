@@ -15,11 +15,8 @@ public class ClientService {
     @Autowired
     private WishlistService wishlistService;
 
-    @Autowired
-    private ClientMapper clientMapper;
-
     public void addClient(ClientDTO clientDTO) {
-        Client client = clientMapper.toClient(clientDTO);
+        Client client = new Client(clientDTO);
         Integer wishlistId = wishlistService.createWishlist(client.getWishlist());
         client.getWishlist().setId(wishlistId);
         clientRepository.save(client);
