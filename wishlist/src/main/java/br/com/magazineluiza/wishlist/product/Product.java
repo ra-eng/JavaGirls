@@ -66,4 +66,12 @@ public class Product {
     public void setDetails(String details) {
         this.details = details;
     }
+
+    public List<Wishlist> getWishlists() {
+        return wishlists;
+    }
+
+    public void setWishlists(List<Wishlist> wishlists) {
+        this.wishlists = wishlists;
+    }
 }

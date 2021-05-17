@@ -1,23 +1,40 @@
 package br.com.magazineluiza.wishlist.client;
 
+import br.com.magazineluiza.wishlist.wishlist.Wishlist;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
 public class ClientDTO {
 
     private int id;
 
-    @NotNull
+    @NotNull @NotEmpty
     private String cpf;
 
-    @NotNull
+    @NotNull @NotEmpty
     private String name;
 
-    @NotNull @Email
+    @NotNull @NotEmpty @Email
     private String email;
 
-    @NotNull
+    @NotNull @NotEmpty
     private String password;
+
+    private Wishlist wishlist;
+
+    public ClientDTO(String cpf, String name, String email, String password, Wishlist wishlist) {
+        this.cpf = cpf;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.wishlist = new Wishlist();
+    }
 
     public int getId() {
         return id;
@@ -57,5 +74,13 @@ public class ClientDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
     }
 }

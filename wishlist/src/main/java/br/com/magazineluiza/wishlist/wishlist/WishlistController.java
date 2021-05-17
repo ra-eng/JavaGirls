@@ -41,12 +41,11 @@ public class WishlistController {
     @PostMapping("/{clientId}/{productId}")
     public ResponseEntity<ApiResponse> addProduct(@PathVariable("clientId") Integer clientId, @PathVariable("productId") Integer productId){
         Client client = clientService.findClient(clientId);
-        client.getWishlist().getId();
         Product product = productService.findProduct(productId);
 
+        productService.addProductToWishlist(product, client);
 
-/*        Wishlist wishlist = new Wishlist(client, product);
-        wishlistService.addProductTo(wishlist);*/
+
         return new ResponseEntity<ApiResponse>(new ApiResponse(true,
                 "Product has been added to Wishlist"), HttpStatus.CREATED);
     }

@@ -30,7 +30,7 @@ public class Client {
         this.name = clientDTO.getName();
         this.email = clientDTO.getEmail();
         this.password = clientDTO.getPassword();
-        this.wishlist = new Wishlist();
+        this.wishlist = clientDTO.getWishlist();
     }
 
     public Integer getId() {

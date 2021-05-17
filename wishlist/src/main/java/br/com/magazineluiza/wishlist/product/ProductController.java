@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,13 +22,13 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getProducts(){
+    public List<ProductDTO> getProducts(){
         return productService.getProducts();
     }
 
    // @ApiOperation(value = "Adicionar Produto")
     @PostMapping
-    public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDTO productDTO){
+    public ResponseEntity<ApiResponse> addProduct(@RequestBody @Valid ProductDTO productDTO){
         productService.addProduct(productDTO);
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
     }

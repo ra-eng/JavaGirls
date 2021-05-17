@@ -14,17 +14,8 @@ public class WishlistService {
     @Autowired
     private WishlistRepository wishlistRepository;
 
-    public void addProductTo(Wishlist wishlist) {
-        wishlistRepository.save(wishlist);
-    }
-
     public Integer createWishlist(Wishlist wishlist) {
         Wishlist wishlistCreated = wishlistRepository.save(wishlist);
         return wishlistCreated.getId();
-
-    }
-
-    public List<Wishlist> readWishList(Client client) {
-        return wishlistRepository.findAllByClientOrderByCreatedDateDesc(client);
     }
 }

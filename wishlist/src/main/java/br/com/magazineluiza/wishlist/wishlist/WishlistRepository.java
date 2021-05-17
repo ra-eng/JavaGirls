@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
 
-    List<Wishlist> findAllByClientOrderByCreatedDateDesc(Client client);
+//    List<Wishlist> findAllByClientOrderByCreatedDateDesc(Client client);
 
 
 

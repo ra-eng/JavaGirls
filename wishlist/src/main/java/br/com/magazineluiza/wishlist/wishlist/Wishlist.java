@@ -21,11 +21,13 @@ public class Wishlist {
     @ManyToMany(mappedBy = "wishlists")
     private List<Product> products;
 
+/*
     @Column(name = "created_date")
     @JsonFormat(pattern = "dd-MM-yyyy")
     private Date createdDate;
 
     final int maxProducts = 20;
+*/
 
     public Wishlist() {
 
@@ -33,7 +35,11 @@ public class Wishlist {
 
     public Wishlist(Client client) {
         this.client = client;
-        this.createdDate = new Date();
+//        this.createdDate = new Date();
+    }
+
+    public void addProduto(Product product){
+        this.products.add(product);
     }
 
     public Integer getId() {
@@ -51,13 +57,4 @@ public class Wishlist {
     public void setClient(Client client) {
         this.client = client;
     }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
 }
