@@ -4,10 +4,11 @@ package br.com.magazineluiza.wishlist.client;
 import br.com.magazineluiza.wishlist.wishlist.Wishlist;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "client")
-public class Client {
+public class Client implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
