@@ -33,10 +33,10 @@ public class Wishlist {
 
     }
 
-    public Wishlist(Client client) {
+    /*public Wishlist(Client client) {
         this.client = client;
 //        this.createdDate = new Date();
-    }
+    }*/
 
     public void addProduto(Product product){
         this.products.add(product);

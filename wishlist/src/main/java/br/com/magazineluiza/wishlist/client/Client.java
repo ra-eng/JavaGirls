@@ -2,6 +2,7 @@ package br.com.magazineluiza.wishlist.client;
 
 
 import br.com.magazineluiza.wishlist.wishlist.Wishlist;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +19,7 @@ public class Client implements Serializable {
     private Wishlist wishlist;
 
     @Column(unique = true)
+
     private String cpf;
     private String name;
     private String email;
@@ -27,6 +29,7 @@ public class Client implements Serializable {
     }
 
     public Client(ClientDTO clientDTO) {
+
         this.cpf = clientDTO.getCpf();
         this.name = clientDTO.getName();
         this.email = clientDTO.getEmail();

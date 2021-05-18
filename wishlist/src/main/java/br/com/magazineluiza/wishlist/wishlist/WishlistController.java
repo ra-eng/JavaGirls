@@ -5,6 +5,7 @@ import br.com.magazineluiza.wishlist.common.ApiResponse;
 import br.com.magazineluiza.wishlist.product.Product;
 import br.com.magazineluiza.wishlist.product.ProductDTO;
 import br.com.magazineluiza.wishlist.product.ProductService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class WishlistController {
         return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
     }
 */
-
+@ApiOperation(value= "Add new Product in a Client Wishlist", response = Wishlist.class)
     @PostMapping("/{clientId}/{productId}")
     public ResponseEntity<ApiResponse> addProduct(@PathVariable("clientId") Integer clientId, @PathVariable("productId") Integer productId){
         Client client = clientService.findClient(clientId);

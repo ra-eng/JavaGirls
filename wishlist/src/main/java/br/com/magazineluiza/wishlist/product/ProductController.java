@@ -1,6 +1,8 @@
 package br.com.magazineluiza.wishlist.product;
 
+import br.com.magazineluiza.wishlist.client.Client;
 import br.com.magazineluiza.wishlist.common.ApiResponse;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+@ApiOperation(value ="/products", tags = "Products Controller" )
 @RestController
-//@Api(value = "Product")
 @RequestMapping(value = "/products")
 public class ProductController {
     @Autowired
@@ -21,12 +23,13 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @ApiOperation(value= "Fetch all products", response = Product.class)
     @GetMapping
     public List<ProductDTO> getProducts(){
         return productService.getProducts();
     }
 
-   // @ApiOperation(value = "Adicionar Produto")
+    @ApiOperation(value= "Add new Products", response = Product.class)
     @PostMapping
     public ResponseEntity<ApiResponse> addProduct(@RequestBody @Valid ProductDTO productDTO){
         productService.addProduct(productDTO);

@@ -1,6 +1,7 @@
 package br.com.magazineluiza.wishlist.client;
 
 import br.com.magazineluiza.wishlist.wishlist.Wishlist;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +17,7 @@ public class ClientDTO {
 
     @NotNull @NotEmpty
     private String cpf;
-
+    
     @NotNull @NotEmpty
     private String name;
 
@@ -27,6 +28,8 @@ public class ClientDTO {
     private String password;
 
     private Wishlist wishlist;
+
+    public ClientDTO(){}
 
     public ClientDTO(String cpf, String name, String email, String password, Wishlist wishlist) {
         this.cpf = cpf;
