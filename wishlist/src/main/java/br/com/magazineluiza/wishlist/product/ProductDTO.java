@@ -24,6 +24,10 @@ public class ProductDTO {
     @NotEmpty
     private String details;
 
+    private String category;
+
+    private String image;
+
     public ProductDTO() {
     }
 
@@ -32,6 +36,17 @@ public class ProductDTO {
         this.name = product.getName();
         this.price = product.getPrice();
         this.details = product.getDetails();
+        this.category = product.getCategory();
+        this.image = product.getImage();
+    }
+
+    public ProductDTO(Integer id, String name, BigDecimal price, String details, String category, String image) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.details = details;
+        this.category = category;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -66,7 +81,23 @@ public class ProductDTO {
         this.details = details;
     }
 
-    public static List<ProductDTO> converter(List<Product> products) {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public static List<ProductDTO> convert(List<Product> products) {
         return products.stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 }

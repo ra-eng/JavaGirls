@@ -1,11 +1,11 @@
 package br.com.magazineluiza.wishlist.client;
 
-
-import br.com.magazineluiza.wishlist.wishlist.Wishlist;
-import io.swagger.annotations.ApiModelProperty;
+import br.com.magazineluiza.wishlist.product.Product;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "client")
@@ -14,27 +14,28 @@ public class Client implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
-    private Wishlist wishlist;
-
     @Column(unique = true)
-
     private String cpf;
     private String name;
     private String email;
     private String password;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "wishlist",
+               joinColumns= @JoinColumn(name = "id_client"),
+               inverseJoinColumns = @JoinColumn(name = "id_product"))
+    private Set<Product> products = new HashSet<>();
+
     public Client() {
     }
 
-    public Client(ClientDTO clientDTO) {
-
-        this.cpf = clientDTO.getCpf();
-        this.name = clientDTO.getName();
-        this.email = clientDTO.getEmail();
-        this.password = clientDTO.getPassword();
-        this.wishlist = clientDTO.getWishlist();
+    public Client(Integer id, String cpf, String name, String email, String password, Set<Product> products) {
+        this.id = id;
+        this.cpf = cpf;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.products = products;
     }
 
     public Integer getId() {
@@ -77,11 +78,15 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public Wishlist getWishlist() {
-        return wishlist;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setWishlist(Wishlist wishlist) {
-        this.wishlist = wishlist;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public void addProduct(Product product) {
+        this.getProducts().add(product);
     }
 }

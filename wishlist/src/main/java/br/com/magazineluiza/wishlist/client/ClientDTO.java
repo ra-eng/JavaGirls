@@ -1,9 +1,11 @@
 package br.com.magazineluiza.wishlist.client;
 
-import br.com.magazineluiza.wishlist.wishlist.Wishlist;
-import io.swagger.annotations.ApiModelProperty;
+import br.com.magazineluiza.wishlist.product.Product;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Getter
@@ -21,16 +23,17 @@ public class ClientDTO {
 
     private String password;
 
-    private Wishlist wishlist = new Wishlist();
+    private Set<Product> products = new HashSet<>();
 
     public ClientDTO(){}
 
-    public ClientDTO(String cpf, String name, String email, String password, Wishlist wishlist) {
+    public ClientDTO(int id, String cpf, String name, String email, String password, Set<Product> products) {
+        this.id = id;
         this.cpf = cpf;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.wishlist = wishlist;
+        this.products = products;
     }
 
     public int getId() {
@@ -73,11 +76,11 @@ public class ClientDTO {
         this.password = password;
     }
 
-    public Wishlist getWishlist() {
-        return wishlist;
+    public Set<Product> getProducts() {
+        return products;
     }
 
-    public void setWishlist(Wishlist wishlist) {
-        this.wishlist = wishlist;
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

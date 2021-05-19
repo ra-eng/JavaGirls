@@ -1,7 +1,5 @@
 package br.com.magazineluiza.wishlist.client;
 
-import br.com.magazineluiza.wishlist.wishlist.Wishlist;
-import br.com.magazineluiza.wishlist.wishlist.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,20 +12,20 @@ public class ClientService {
     private ClientRepository clientRepository;
 
     @Autowired
-    private WishlistService wishlistService;
-
-    @Autowired
     private ClientMapper clientMapper;
 
-    public void addClient(ClientDTO clientDTO) {
-        Client client = clientMapper.toClient(clientDTO);
-        Integer wishlistId = wishlistService.createWishlist(client.getWishlist());
-        client.getWishlist().setId(wishlistId);
-        clientRepository.save(client);
+    public Client addClient(Client client) {
+        return clientRepository.save(client);
+    }
+
+    public void addClientDTO(ClientDTO clientDTO) {
+        clientRepository.save(clientMapper.toClient(clientDTO));
     }
     
-    public Client findClient(Integer clientId){
+    public Client findBy(Integer clientId){
         Optional<Client> client = clientRepository.findById(clientId);
-        return Optional.ofNullable(client).get().get();
+        return client.get();
     }
+
+
 }

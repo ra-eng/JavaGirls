@@ -1,10 +1,11 @@
 package br.com.magazineluiza.wishlist.product;
 
-import br.com.magazineluiza.wishlist.wishlist.Wishlist;
+import br.com.magazineluiza.wishlist.client.Client;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -15,23 +16,23 @@ public class Product {
     private String name;
     private BigDecimal price;
     private String details;
+    private String category;
+    private String image;
 
-    @ManyToMany
-    @JoinTable(name = "product_wishlist",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "wishlist_id"))
-    private List<Wishlist> wishlists;
 
-//    private @NotNull String image;
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
+    private Set<Client> clients = new HashSet<>();
 
     public Product() {
     }
 
-    public Product(ProductDTO productDTO) {
-        this.id = productDTO.getId();
-        this.name = productDTO.getName();
-        this.price = productDTO.getPrice();
-        this.details = productDTO.getDetails();
+    public Product(Integer id, String name, BigDecimal price, String details, String category, String image) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.details = details;
+        this.category = category;
+        this.image = image;
     }
 
     public Integer getId() {
@@ -66,11 +67,27 @@ public class Product {
         this.details = details;
     }
 
-    public List<Wishlist> getWishlists() {
-        return wishlists;
+    public String getCategory() {
+        return category;
     }
 
-    public void setWishlists(List<Wishlist> wishlists) {
-        this.wishlists = wishlists;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
     }
 }

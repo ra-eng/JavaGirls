@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 @ApiOperation(value ="/products", tags = "Products Controller" )
 @RestController
@@ -24,7 +25,7 @@ public class ProductController {
 
     @ApiOperation(value= "Fetch all products", response = Product.class)
     @GetMapping
-    public List<ProductDTO> getProducts(){
+    public Iterable<ProductDTO> getProducts(){
         return productService.getProducts();
     }
 
