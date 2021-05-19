@@ -5,9 +5,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -15,16 +12,14 @@ public class ClientDTO {
 
     private int id;
 
-    @NotNull @NotEmpty
     private String cpf;
     
     @NotNull @NotEmpty
     private String name;
 
-    @NotNull @NotEmpty @Email
+//    @NotNull @NotEmpty @Email
     private String email;
 
-    @NotNull @NotEmpty
     private String password;
 
     private Wishlist wishlist;

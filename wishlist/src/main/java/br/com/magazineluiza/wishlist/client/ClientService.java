@@ -5,7 +5,6 @@ import br.com.magazineluiza.wishlist.wishlist.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
 @Service
@@ -22,7 +21,6 @@ public class ClientService {
 
     public void addClient(ClientDTO clientDTO) {
         Client client = clientMapper.toClient(clientDTO);
-        client.setWishlist(new Wishlist());
         Integer wishlistId = wishlistService.createWishlist(client.getWishlist());
         client.getWishlist().setId(wishlistId);
         clientRepository.save(client);

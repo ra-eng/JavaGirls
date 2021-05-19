@@ -12,7 +12,7 @@
 	<artifactId>wishlist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>wishlist</name>
-	<description>Este é um app feito para o desafio da iniciativa Luiza &lt;Code&gt; da Gama.</description>
+	<description>Este é um app feito para o desafio da iniciativa Luiza Code da Gama.</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

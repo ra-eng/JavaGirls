@@ -5,7 +5,6 @@ import br.com.magazineluiza.wishlist.wishlist.Wishlist;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product")
@@ -13,9 +12,9 @@ public class Product {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private @NotNull String name;
-    private @NotNull BigDecimal price;
-    private @NotNull String details;
+    private String name;
+    private BigDecimal price;
+    private String details;
 
     @ManyToMany
     @JoinTable(name = "product_wishlist",
