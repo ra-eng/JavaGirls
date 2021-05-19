@@ -61,7 +61,7 @@ public class ProductService {
 
     public Product findProduct(Integer productId){
         Optional<Product> product = productRepository.findById(productId);
-        return Optional.ofNullable(product).get().get();
+        return Optional.of(product).get().get();
     }
 
     public void deleteProduct(Client client, Product product) {

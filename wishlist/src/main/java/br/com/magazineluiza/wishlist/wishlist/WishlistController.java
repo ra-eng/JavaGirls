@@ -22,9 +22,6 @@ public class WishlistController {
     private ProductService productService;
 
     @Autowired
-    private WishlistService wishlistService;
-
-    @Autowired
     private ClientService clientService;
 
     @GetMapping("/{clientId}")
@@ -35,10 +32,8 @@ public class WishlistController {
 
         return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
     }
-*/
-@ApiOperation(value= "Add new Product in a Client Wishlist", response = Wishlist.class)
 
-    @GetMapping("/{clientId}/{name}")
+    @GetMapping("/{clientId}/productName/{name}")
     public ResponseEntity<List<ProductDTO>> getProductByName(@PathVariable("clientId") Integer clientId, @PathVariable("name") String name){
         Client client = clientService.findClient(clientId);
 
@@ -47,7 +42,7 @@ public class WishlistController {
         return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
     }
 
-
+    @ApiOperation(value= "Add new Product in a Client Wishlist", response = Wishlist.class)
     @PostMapping("/{clientId}/{productId}")
     public ResponseEntity<ApiResponse> addProduct(@PathVariable("clientId") Integer clientId, @PathVariable("productId") Integer productId){
         Client client = clientService.findClient(clientId);

@@ -14,7 +14,6 @@ public class ClientDTO {
 
     private String cpf;
     
-    @NotNull @NotEmpty
     private String name;
 
 //    @NotNull @NotEmpty @Email
