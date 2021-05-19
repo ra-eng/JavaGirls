@@ -21,7 +21,7 @@ public class ClientDTO {
 
     private String password;
 
-    private Wishlist wishlist;
+    private Wishlist wishlist = new Wishlist();
 
     public ClientDTO(){}
 
@@ -30,7 +30,7 @@ public class ClientDTO {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.wishlist = new Wishlist();
+        this.wishlist = wishlist;
     }
 
     public int getId() {

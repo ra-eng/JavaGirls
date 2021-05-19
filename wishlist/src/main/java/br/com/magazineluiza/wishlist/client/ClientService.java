@@ -25,12 +25,7 @@ public class ClientService {
         client.getWishlist().setId(wishlistId);
         clientRepository.save(client);
     }
-
-    public int findClientByID(Integer clientId){
-        Optional<Client> id = clientRepository.findById(clientId);
-        return id.get().getId();
-    }
-
+    
     public Client findClient(Integer clientId){
         Optional<Client> client = clientRepository.findById(clientId);
         return Optional.ofNullable(client).get().get();
