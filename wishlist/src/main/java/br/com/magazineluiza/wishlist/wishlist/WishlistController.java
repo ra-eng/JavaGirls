@@ -2,9 +2,11 @@ package br.com.magazineluiza.wishlist.wishlist;
 
 import br.com.magazineluiza.wishlist.client.ClientDTO;
 import br.com.magazineluiza.wishlist.common.ApiResponse;
+import br.com.magazineluiza.wishlist.product.Product;
 import br.com.magazineluiza.wishlist.product.ProductDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,8 @@ public class WishlistController {
 
     @ApiOperation(value= "Returns wishlist for a given client id")
     @GetMapping("{clientId}")
-    public ResponseEntity<?> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId) {
+    public List<Product> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId)
+        throws NotFoundException {
         return wishlistService.getProductsBy(clientId);
     }
 

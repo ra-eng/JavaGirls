@@ -9,6 +9,7 @@ import br.com.magazineluiza.wishlist.product.ProductDTO;
 import br.com.magazineluiza.wishlist.product.ProductMapper;
 import br.com.magazineluiza.wishlist.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -61,14 +62,14 @@ public class WishlistService {
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been added to Wishlist"), HttpStatus.CREATED);
     }
 
-    public ResponseEntity<?> getProductsBy(Integer clientId) {
+    public List<Product> getProductsBy(Integer clientId) throws NotFoundException {
         ClientDTO client = null;
         try {
             client = clientMapper.toClientDTO(clientService.findBy(clientId));
         } catch (RuntimeException e){
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.NOT_FOUND);
+            throw new NotFoundException();
         }
-        return new ResponseEntity<ClientDTO>(client, HttpStatus.CREATED);
+        return client.getProducts();
     }
 
     public ResponseEntity<ApiResponse> deleteProduct(Integer clientId, Integer productId) {
