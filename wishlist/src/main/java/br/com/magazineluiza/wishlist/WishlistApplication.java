@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@ComponentScan("src/main/java/br/com/magazineluiza/wishlist")
 public class WishlistApplication {
 
 	public static void main(String[] args) {
