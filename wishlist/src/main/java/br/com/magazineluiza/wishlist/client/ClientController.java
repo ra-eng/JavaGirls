@@ -26,6 +26,7 @@ public class ClientController {
     @ApiOperation(value= "Add new Clients",response = ClientDTO.class)
     @PostMapping
     public ResponseEntity<ApiResponse> addClient(@RequestBody @Valid ClientDTO clientDTO){
+<<<<<<< Updated upstream
         try {
             clientService.addClientDTO(clientDTO);
             return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Client has been added"), HttpStatus.CREATED);
@@ -34,6 +35,9 @@ public class ClientController {
             return new ResponseEntity<ApiResponse>(new ApiResponse(false, clientService.treatOutput(e.getCause().getCause().getMessage())), HttpStatus.NOT_ACCEPTABLE);
         }
 
+=======
+        return clientService.addClientDTO(clientDTO);
+>>>>>>> Stashed changes
     }
 
 

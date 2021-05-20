@@ -1,9 +1,13 @@
 package br.com.magazineluiza.wishlist.product;
 
+<<<<<<< Updated upstream
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotEmpty;
+=======
+import javax.validation.constraints.NotBlank;
+>>>>>>> Stashed changes
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -12,6 +16,7 @@ import java.util.stream.Collectors;
 @ApiModel(description = "Details about the products")
 
 
+<<<<<<< Updated upstream
 
 public class ProductDTO {
     @ApiModelProperty(notes= "The unique id  of the product",required = false, hidden = true)
@@ -31,6 +36,20 @@ public class ProductDTO {
     @NotEmpty
     private String details;
     @ApiModelProperty(notes= "The product´s category", example= "Armas")
+=======
+    private Integer id;
+
+    @NotBlank(message = "{value.not.blank}")
+    private String name;
+
+    @NotNull(message = "{value.not.null}")
+    private BigDecimal price;
+
+    @NotBlank(message = "{value.not.blank}")
+    private String details;
+
+    @NotBlank(message = "{value.not.blank}")
+>>>>>>> Stashed changes
     private String category;
     @ApiModelProperty(notes= "The product image",required = false, hidden = true)
     private String image;
