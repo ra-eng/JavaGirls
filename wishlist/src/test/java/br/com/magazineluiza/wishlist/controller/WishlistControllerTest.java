@@ -3,7 +3,7 @@ package br.com.magazineluiza.wishlist.controller;
 
 import br.com.magazineluiza.wishlist.client.ClientDTO;
 import br.com.magazineluiza.wishlist.wishlist.WishlistService;
-import jdk.jfr.ContentType;
+//import jdk.jfr.ContentType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
