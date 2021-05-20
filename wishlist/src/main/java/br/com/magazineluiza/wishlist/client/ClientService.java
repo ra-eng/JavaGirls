@@ -21,11 +21,11 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
-    public ResponseEntity<ApiResponse> addClientDTO(ClientDTO clientDTO) {
+    public ResponseEntity<ApiResponse> addClient(ClientDTO clientDTO) {
         try {
             clientRepository.save(clientMapper.toClient(clientDTO));
         } catch (RuntimeException e){
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false, treatOutPut(e.getCause().getCause().getMessage())), HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Client has been added"), HttpStatus.CREATED);
     }
@@ -34,13 +34,9 @@ public class ClientService {
         Optional<Client> client = clientRepository.findById(clientId);
         return client.get();
     }
-<<<<<<< Updated upstream
-    public String treatOutput(String output){
+
+    public String treatOutPut(String output){
         String[] vet = output.split("Detalhe: ");
         return vet[1];
     }
-
-
-=======
->>>>>>> Stashed changes
 }

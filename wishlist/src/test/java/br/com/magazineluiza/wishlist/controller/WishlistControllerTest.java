@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
+//@WebMvcTest
 public class WishlistControllerTest {
     @Autowired
     private MockMvc mockmvc;
@@ -26,7 +26,7 @@ public class WishlistControllerTest {
     @MockBean
     private WishlistService wishlistService;
 
-    @Test
+/*    @Test
     public void testeGetController_Sucesso() throws Exception {
 
         ClientDTO clientDTO = new ClientDTO(1, "067.945.456-40", "teste", "teste", "teste", Collections.emptyList());
@@ -35,8 +35,7 @@ public class WishlistControllerTest {
         mockmvc.perform(get(WISHLIST_ENDPOINT + "/" + clientDTO.getId()))
                 .andExpect(status().isOk());
 
-    }
-
+    }*/
 
 }
 

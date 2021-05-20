@@ -1,52 +1,33 @@
 package br.com.magazineluiza.wishlist.client;
 
 import br.com.magazineluiza.wishlist.product.Product;
-<<<<<<< Updated upstream
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.web.bind.annotation.RequestParam;
-=======
->>>>>>> Stashed changes
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< Updated upstream
 @ApiModel(description = "Details about the client")
-@Getter
-@Setter
-=======
->>>>>>> Stashed changes
 public class ClientDTO {
-    @ApiModelProperty(notes= "The unique id  of the client",required = false, hidden = true)
+    @ApiModelProperty(notes= "The unique id  of the client", required = false, hidden = true)
     private int id;
-<<<<<<< Updated upstream
-    @ApiModelProperty(notes= "The client´s CPF",example= "100.111.122-22")
-    private String cpf;
-    @ApiModelProperty(notes= "The client´s name",example= "Darth Vader")
-    private String name;
-    @ApiModelProperty(notes= "The client´s email",example= "OEscolhido@Imperio.com")
-//    @NotNull @NotEmpty @Email
-    private String email;
-    @ApiModelProperty(notes= "The client´s password",example= "OLadoNegroDaForça")
-=======
 
+    @ApiModelProperty(notes= "The client´s CPF", example= "100.111.122-22")
     @NotBlank(message = "{value.not.blank}")
     private String cpf;
 
+    @ApiModelProperty(notes= "The client´s name", example= "Darth Vader")
     @NotBlank(message = "{value.not.blank}")
     private String name;
 
+    @ApiModelProperty(notes= "The client´s email", example= "OEscolhido@Imperio.com")
     @Email(message = "{email.not.null}")
     private String email;
 
+    @ApiModelProperty(notes= "The client´s password", example= "OLadoNegroDaForça")
     @NotBlank(message = "{value.not.blank}")
->>>>>>> Stashed changes
     private String password;
 
     @ApiModelProperty(required = false, hidden = true)

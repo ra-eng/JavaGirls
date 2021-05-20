@@ -1,12 +1,8 @@
 package br.com.magazineluiza.wishlist.client;
 
 import br.com.magazineluiza.wishlist.common.ApiResponse;
-import br.com.magazineluiza.wishlist.product.ProductDTO;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,20 +22,6 @@ public class ClientController {
     @ApiOperation(value= "Add new Clients",response = ClientDTO.class)
     @PostMapping
     public ResponseEntity<ApiResponse> addClient(@RequestBody @Valid ClientDTO clientDTO){
-<<<<<<< Updated upstream
-        try {
-            clientService.addClientDTO(clientDTO);
-            return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Client has been added"), HttpStatus.CREATED);
-        }
-        catch(DataIntegrityViolationException e){
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, clientService.treatOutput(e.getCause().getCause().getMessage())), HttpStatus.NOT_ACCEPTABLE);
-        }
-
-=======
-        return clientService.addClientDTO(clientDTO);
->>>>>>> Stashed changes
+        return clientService.addClient(clientDTO);
     }
-
-
-
 }
