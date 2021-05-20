@@ -19,7 +19,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @ApiOperation(value= "Add new Clients",response = ClientDTO.class)
+    @ApiOperation(value= "Add new Clients", response = ClientDTO.class)
     @PostMapping
     public ResponseEntity<ApiResponse> addClient(@RequestBody @Valid ClientDTO clientDTO){
         return clientService.addClient(clientDTO);
