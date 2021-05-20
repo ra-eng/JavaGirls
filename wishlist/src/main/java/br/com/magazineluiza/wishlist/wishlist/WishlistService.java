@@ -51,6 +51,7 @@ public class WishlistService {
             if(client.getProducts().size() == maximumProducts) throw new MaximumSizeException(maximumProducts);
 
             client.addProduct(product);
+            clientService.addClient(client);
 
         } catch (RuntimeException e){
             if (client == null) return new ResponseEntity<ApiResponse>(new ApiResponse(false, String.format("No client id %d present", clientId)), HttpStatus.NOT_FOUND);
@@ -70,17 +71,35 @@ public class WishlistService {
         return new ResponseEntity<ClientDTO>(client, HttpStatus.CREATED);
     }
 
-    public void deleteProduct(Integer clientId, Integer productId) {
-        Client client = clientService.findBy(clientId);
-        for (Product product : client.getProducts()){
-            if (product.getId().equals(productId)) clientRepository.removeProduct(productId);
+    public ResponseEntity<ApiResponse> deleteProduct(Integer clientId, Integer productId) {
+        Client client = null;
+        List<Product> products = null;
+
+        try {
+            client = clientService.findBy(clientId);
+            products = client.getProducts();
+            if (products.size() == 0) return new ResponseEntity<ApiResponse>(
+                    new ApiResponse(false, String.format("Client doesn't any products on the wishlist", productId)), HttpStatus.NOT_FOUND);
+
+            for (Product product : products) {
+                if (product.getId().equals(productId)) {
+                    clientRepository.removeProduct(productId);
+                    return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been deleted from Wishlist"), HttpStatus.OK);
+                }
+            }
+        } catch (RuntimeException e){
+            if (client == null) return new ResponseEntity<ApiResponse>(new ApiResponse(false, String.format("No client id %d present", clientId)), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
         }
+        return new ResponseEntity<ApiResponse>(new ApiResponse(false, String.format("No product id %d present", productId)), HttpStatus.NOT_FOUND);
     }
 
-    public List<ProductDTO> getProductsByName(String productName, Integer clientId) {
+    public ResponseEntity<List<ProductDTO>> getProductsByName(String productName, Integer clientId) {
         ClientDTO clientDTO = clientMapper.toClientDTO(clientService.findBy(clientId));
         List<ProductDTO> products = productMapper.toProductDTO(clientDTO.getProducts());
-        return products.stream().filter(p -> p.getName().toLowerCase()
+        List<ProductDTO> collect = products.stream().filter(p -> p.getName().toLowerCase()
                 .equals(productName.toLowerCase())).collect(Collectors.toList());
+
+        return new ResponseEntity<List<ProductDTO>>(collect, HttpStatus.OK);
     }
 }

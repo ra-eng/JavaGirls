@@ -27,8 +27,7 @@ public class WishlistController {
     @ApiOperation(value= "Returns a product searched for by name")
     @GetMapping("/{clientId}/product/{name}")
     public ResponseEntity<List<ProductDTO>> getProdutosByName(@PathVariable(value = "clientId") Integer clientId, @PathVariable(value = "name") String productName) {
-        List<ProductDTO> products = wishlistService.getProductsByName(productName, clientId);
-        return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
+       return wishlistService.getProductsByName(productName, clientId);
     }
 
     @ApiOperation(value= "Add a product to the client's wishlist")
@@ -40,12 +39,7 @@ public class WishlistController {
     @ApiOperation(value= "Deletes a product in the customer's wishlist by id")
     @DeleteMapping("/{clientId}/{productId}")
     public ResponseEntity<ApiResponse> deleteProduct(@PathVariable("clientId") Integer clientId, @PathVariable("productId") Integer productId){
-        try {
-            wishlistService.deleteProduct(clientId, productId);
-        } catch (RuntimeException e){
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.FORBIDDEN);
-        }
-        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been deleted from Wishlist"), HttpStatus.CREATED);
+        return wishlistService.deleteProduct(clientId, productId);
     }
 
 }
