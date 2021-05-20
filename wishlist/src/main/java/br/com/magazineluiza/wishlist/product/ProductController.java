@@ -1,6 +1,5 @@
 package br.com.magazineluiza.wishlist.product;
 
-import br.com.magazineluiza.wishlist.client.Client;
 import br.com.magazineluiza.wishlist.common.ApiResponse;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Set;
 
 @ApiOperation(value ="/products", tags = "Products Controller" )
 @RestController

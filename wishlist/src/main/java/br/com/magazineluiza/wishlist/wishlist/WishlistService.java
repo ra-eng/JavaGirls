@@ -1,6 +1,7 @@
 package br.com.magazineluiza.wishlist.wishlist;
 
 import br.com.magazineluiza.wishlist.client.*;
+import br.com.magazineluiza.wishlist.common.ApiResponse;
 import br.com.magazineluiza.wishlist.exception.IdAlreadyAddedException;
 import br.com.magazineluiza.wishlist.exception.MaximumSizeException;
 import br.com.magazineluiza.wishlist.product.Product;
@@ -8,9 +9,12 @@ import br.com.magazineluiza.wishlist.product.ProductDTO;
 import br.com.magazineluiza.wishlist.product.ProductMapper;
 import br.com.magazineluiza.wishlist.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,23 +35,39 @@ public class WishlistService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Client addProduct(Integer clientId, Integer productId) throws RuntimeException {
+    public ResponseEntity<ApiResponse> addProduct(Integer clientId, Integer productId) {
         int maximumProducts = 20;
-        Client client = clientService.findBy(clientId);
+        Client client = null;
+        Product product = null;
 
-        for (Product p: client.getProducts()) {
-            if (p.getId().equals(productId)) throw new IdAlreadyAddedException(productId);
+        try {
+            client = clientService.findBy(clientId);
+            product = productService.findBy(productId);
+
+            for (Product p: client.getProducts()) {
+                if (p.getId().equals(productId)) throw new IdAlreadyAddedException(productId);
+            }
+
+            if(client.getProducts().size() == maximumProducts) throw new MaximumSizeException(maximumProducts);
+
+            client.addProduct(product);
+
+        } catch (RuntimeException e){
+            if (client == null) return new ResponseEntity<ApiResponse>(new ApiResponse(false, String.format("No client id %d present", clientId)), HttpStatus.NOT_FOUND);
+            if (product == null) return new ResponseEntity<ApiResponse>(new ApiResponse(false, String.format("No product id %d present", productId)), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.BAD_REQUEST);
         }
-
-        Product product = productService.findBy(productId);
-        if(client.getProducts().size() == maximumProducts) throw new MaximumSizeException(maximumProducts);
-        client.addProduct(product);
-        return clientService.addClient(client);
+        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been added to Wishlist"), HttpStatus.CREATED);
     }
 
-    public ClientDTO getProductsBy(Integer clientId) {
-        Client client = clientService.findBy(clientId);
-        return clientMapper.toClientDTO(client);
+    public ResponseEntity<?> getProductsBy(Integer clientId) {
+        ClientDTO client = null;
+        try {
+            client = clientMapper.toClientDTO(clientService.findBy(clientId));
+        } catch (RuntimeException e){
+            return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<ClientDTO>(client, HttpStatus.CREATED);
     }
 
     public void deleteProduct(Integer clientId, Integer productId) {

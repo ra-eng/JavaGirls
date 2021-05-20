@@ -1,9 +1,7 @@
 package br.com.magazineluiza.wishlist.wishlist;
 
-import br.com.magazineluiza.wishlist.client.Client;
 import br.com.magazineluiza.wishlist.client.ClientDTO;
 import br.com.magazineluiza.wishlist.common.ApiResponse;
-import br.com.magazineluiza.wishlist.product.Product;
 import br.com.magazineluiza.wishlist.product.ProductDTO;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +20,8 @@ public class WishlistController {
 
     @ApiOperation(value= "Returns wishlist for a given client id")
     @GetMapping("{clientId}")
-    public ResponseEntity<ClientDTO> getProdutosByIdCliente(@PathVariable(value = "clientId") Integer clientId) {
-        ClientDTO client = wishlistService.getProductsBy(clientId);
-        return new ResponseEntity<ClientDTO>(client, HttpStatus.CREATED);
+    public ResponseEntity<?> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId) {
+        return wishlistService.getProductsBy(clientId);
     }
 
     @ApiOperation(value= "Returns a product searched for by name")
@@ -37,12 +34,7 @@ public class WishlistController {
     @ApiOperation(value= "Add a product to the client's wishlist")
     @PostMapping("/{clientId}/{productId}")
     public ResponseEntity<ApiResponse> addProduct(@PathVariable("clientId") Integer clientId, @PathVariable("productId") Integer productId){
-        try {
-            wishlistService.addProduct(clientId, productId);
-        } catch (RuntimeException e){
-            return new ResponseEntity<ApiResponse>(new ApiResponse(false, e.getMessage()), HttpStatus.FORBIDDEN);
-        }
-        return new ResponseEntity<ApiResponse>(new ApiResponse(true, "Product has been added to Wishlist"), HttpStatus.CREATED);
+            return wishlistService.addProduct(clientId, productId);
     }
 
     @ApiOperation(value= "Deletes a product in the customer's wishlist by id")
