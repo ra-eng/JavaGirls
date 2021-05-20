@@ -1,6 +1,7 @@
 package br.com.magazineluiza.wishlist.wishlist;
 
 import br.com.magazineluiza.wishlist.client.*;
+import br.com.magazineluiza.wishlist.exception.IdAlreadyAddedException;
 import br.com.magazineluiza.wishlist.exception.MaximumSizeException;
 import br.com.magazineluiza.wishlist.product.Product;
 import br.com.magazineluiza.wishlist.product.ProductDTO;
@@ -30,11 +31,16 @@ public class WishlistService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Client addProduct(Integer clientId, Integer productId) throws MaximumSizeException {
+    public Client addProduct(Integer clientId, Integer productId) throws RuntimeException {
         int maximumProducts = 20;
         Client client = clientService.findBy(clientId);
+
+        for (Product p: client.getProducts()) {
+            if (p.getId().equals(productId)) throw new IdAlreadyAddedException(productId);
+        }
+
         Product product = productService.findBy(productId);
-        if(client.getProducts().size() == maximumProducts) throw new MaximumSizeException();
+        if(client.getProducts().size() == maximumProducts) throw new MaximumSizeException(maximumProducts);
         client.addProduct(product);
         return clientService.addClient(client);
     }

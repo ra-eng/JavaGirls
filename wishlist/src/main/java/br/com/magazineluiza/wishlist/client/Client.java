@@ -9,14 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
 @Table(name = "client")
-public class Client implements Serializable {
+public class Client {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

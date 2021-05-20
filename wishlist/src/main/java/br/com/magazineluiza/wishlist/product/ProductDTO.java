@@ -6,9 +6,13 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+<<<<<<< HEAD
 import java.util.List;
 import java.util.stream.Collectors;
 @ApiModel(description = "Details about the products")
+=======
+
+>>>>>>> 95ef52c2edb941201c2e341994157bb376c78f1a
 public class ProductDTO {
     @ApiModelProperty(notes= "The unique id  of the product",required = false, hidden = true)
     @NotNull

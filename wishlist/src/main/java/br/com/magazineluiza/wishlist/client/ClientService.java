@@ -26,6 +26,10 @@ public class ClientService {
         Optional<Client> client = clientRepository.findById(clientId);
         return client.get();
     }
+    public String treatOutput(String output){
+        String[] vet = output.split("Detalhe: ");
+        return vet[1];
+    }
 
 
 }
