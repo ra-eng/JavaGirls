@@ -96,8 +96,4 @@ public class ProductDTO {
     public void setImage(String image) {
         this.image = image;
     }
-
-    public static List<ProductDTO> convert(List<Product> products) {
-        return products.stream().map(ProductDTO::new).collect(Collectors.toList());
-    }
 }

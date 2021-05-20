@@ -4,7 +4,9 @@ import br.com.magazineluiza.wishlist.product.Product;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,12 +26,12 @@ public class Client implements Serializable {
     @JoinTable(name = "wishlist",
                joinColumns= @JoinColumn(name = "id_client"),
                inverseJoinColumns = @JoinColumn(name = "id_product"))
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
     public Client() {
     }
 
-    public Client(Integer id, String cpf, String name, String email, String password, Set<Product> products) {
+    public Client(Integer id, String cpf, String name, String email, String password, List<Product> products) {
         this.id = id;
         this.cpf = cpf;
         this.name = name;
@@ -78,11 +80,11 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 

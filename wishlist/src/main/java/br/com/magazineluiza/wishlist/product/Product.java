@@ -1,10 +1,13 @@
 package br.com.magazineluiza.wishlist.product;
 
 import br.com.magazineluiza.wishlist.client.Client;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,7 +24,7 @@ public class Product {
 
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
-    private Set<Client> clients = new HashSet<>();
+    private List<Client> clients = new ArrayList<>();
 
     public Product() {
     }
@@ -83,11 +86,12 @@ public class Product {
         this.image = image;
     }
 
-    public Set<Client> getClients() {
+    @JsonIgnore
+    public List<Client> getClients() {
         return clients;
     }
 
-    public void setClients(Set<Client> clients) {
+    public void setClients(List<Client> clients) {
         this.clients = clients;
     }
 }

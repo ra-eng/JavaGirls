@@ -4,7 +4,8 @@ import br.com.magazineluiza.wishlist.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 
@@ -23,11 +24,11 @@ public class ClientDTO {
 
     private String password;
 
-    private Set<Product> products = new HashSet<>();
+    private List<Product> products = new ArrayList<>();
 
     public ClientDTO(){}
 
-    public ClientDTO(int id, String cpf, String name, String email, String password, Set<Product> products) {
+    public ClientDTO(int id, String cpf, String name, String email, String password, List<Product> products) {
         this.id = id;
         this.cpf = cpf;
         this.name = name;
@@ -76,11 +77,11 @@ public class ClientDTO {
         this.password = password;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }
