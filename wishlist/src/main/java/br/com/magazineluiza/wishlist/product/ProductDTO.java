@@ -3,8 +3,6 @@ package br.com.magazineluiza.wishlist.product;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductDTO {
 
