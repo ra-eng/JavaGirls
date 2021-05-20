@@ -23,13 +23,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @ApiOperation(value= "Fetch all products", response = Product.class)
+    @ApiOperation(value= "Fetch all products",response = ProductDTO.class)
     @GetMapping
-    public Iterable<ProductDTO> getProducts(){
+    public Iterable<ProductDTO> getProducts(){//pq interable? e não list?
         return productService.getProducts();
     }
 
-    @ApiOperation(value= "Add new Products", response = Product.class)
+    @ApiOperation(value= "Add new Products",response = ProductDTO.class)
     @PostMapping
     public ResponseEntity<ApiResponse> addProduct(@RequestBody @Valid ProductDTO productDTO){
         productService.addProduct(productDTO);

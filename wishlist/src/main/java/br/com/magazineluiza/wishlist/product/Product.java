@@ -2,6 +2,8 @@ package br.com.magazineluiza.wishlist.product;
 
 import br.com.magazineluiza.wishlist.client.Client;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

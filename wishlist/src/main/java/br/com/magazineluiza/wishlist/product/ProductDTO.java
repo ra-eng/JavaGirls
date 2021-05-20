@@ -1,31 +1,34 @@
 package br.com.magazineluiza.wishlist.product;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@ApiModel(description = "Details about the products")
 public class ProductDTO {
-
+    @ApiModelProperty(notes= "The unique id  of the product",required = false, hidden = true)
     @NotNull
     @NotEmpty
     private Integer id;
-
+    @ApiModelProperty(notes= "The product´s name",example= "Sabre de Luz")
     @NotNull
     @NotEmpty
     private String name;
-
+    @ApiModelProperty(notes= "The product´s price",example= "9000")
     @NotNull
     @NotEmpty
     private BigDecimal price;
-
+    @ApiModelProperty(notes= "The product´s details",example="Vermelho")
     @NotNull
     @NotEmpty
     private String details;
-
+    @ApiModelProperty(notes= "The product´s category", example= "Armas")
     private String category;
-
+    @ApiModelProperty(notes= "The product image",required = false, hidden = true)
     private String image;
 
     public ProductDTO() {

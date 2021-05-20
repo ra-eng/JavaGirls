@@ -1,29 +1,34 @@
 package br.com.magazineluiza.wishlist.client;
 
 import br.com.magazineluiza.wishlist.product.Product;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
+@ApiModel(description = "Details about the client")
 @Getter
 @Setter
 public class ClientDTO {
-
+    @ApiModelProperty(notes= "The unique id  of the client",required = false, hidden = true)
     private int id;
-
+    @ApiModelProperty(notes= "The client´s CPF",example= "100.111.122-22")
     private String cpf;
-    
+    @ApiModelProperty(notes= "The client´s name",example= "Darth Vader")
     private String name;
-
+    @ApiModelProperty(notes= "The client´s email",example= "OEscolhido@Imperio.com")
 //    @NotNull @NotEmpty @Email
     private String email;
-
+    @ApiModelProperty(notes= "The client´s password",example= "OLadoNegroDaForça")
     private String password;
 
+    @ApiModelProperty(required = false, hidden = true)
     private List<Product> products = new ArrayList<>();
 
     public ClientDTO(){}

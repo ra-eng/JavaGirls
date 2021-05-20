@@ -1,6 +1,10 @@
 package br.com.magazineluiza.wishlist.client;
 
 import br.com.magazineluiza.wishlist.product.Product;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,23 +13,28 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "client")
 public class Client implements Serializable {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(unique = true)
     private String cpf;
+
     private String name;
+
     private String email;
+
     private String password;
+
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "wishlist",
                joinColumns= @JoinColumn(name = "id_client"),
                inverseJoinColumns = @JoinColumn(name = "id_product"))
+    @ApiModelProperty(required = false, hidden = true)
     private List<Product> products = new ArrayList<>();
 
     public Client() {

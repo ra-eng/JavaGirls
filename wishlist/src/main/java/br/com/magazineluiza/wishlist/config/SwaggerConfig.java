@@ -27,11 +27,11 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(metaInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.magazineluiza.wishlist"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .apiInfo(metaInfo());
     }
 
 
@@ -41,7 +41,7 @@ public class SwaggerConfig {
                 .description("This API is a final challenge for Magazine Luiza's bootcamp in partnership with Gama Academy.")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
-                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+                .licenseUrl("https://www.apache.org/licenses")
                 .build();
     }
 

@@ -1,6 +1,8 @@
 package br.com.magazineluiza.wishlist.client;
 
 import br.com.magazineluiza.wishlist.common.ApiResponse;
+import br.com.magazineluiza.wishlist.product.ProductDTO;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @ApiOperation(value= "Add new Clients", response = Client.class)
+    @ApiOperation(value= "Add new Clients",response = ClientDTO.class)
     @PostMapping
     public ResponseEntity<ApiResponse> addClient(@RequestBody @Valid ClientDTO clientDTO){
         clientService.addClientDTO(clientDTO);
