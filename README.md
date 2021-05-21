@@ -78,8 +78,7 @@ Input:
 Input:
  GET:"/products"
  ```bash
- {
-    [
+[
       "id": 1,
       "name": "cadeira",
       "price": 200,
@@ -110,16 +109,15 @@ Input:
       "details": "details",
       "category": "vestimenta",
       "image": "bbb.png"
-    ]
-}
+]
+
 ```
  
 
 ### :heavy_check_mark: Search a wishlist for a given client id
  GET:"/wishlist/{clientId}"
 ```bash
-{
-  [
+[
       "id": 1,
       "name": "cadeira",
       "price": 200,
@@ -134,8 +132,7 @@ Input:
       "details": "details",
       "category": "sala",
       "image": "cadeira.png"
-  ]
-}
+]
 ```
 
 ### :heavy_check_mark: Add a product to the client's wishlist
@@ -163,6 +160,7 @@ Link clientId to productId
       "details": "details",
       "category": "sala",
       "image": "cadeira.png"
+    }
   ]
 }
 ```
