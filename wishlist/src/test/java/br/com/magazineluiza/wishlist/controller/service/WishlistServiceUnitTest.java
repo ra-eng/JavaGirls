@@ -16,7 +16,6 @@ import br.com.magazineluiza.wishlist.product.ProductMapper;
 import br.com.magazineluiza.wishlist.product.ProductRepository;
 import br.com.magazineluiza.wishlist.product.ProductService;
 import br.com.magazineluiza.wishlist.wishlist.WishlistService;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

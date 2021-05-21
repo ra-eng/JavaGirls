@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-    @Modifying
-    @Query(value = "delete from product_wishlist pw where pw.product_id = :productId", nativeQuery = true)
-    void deleteProductById(@Param("productId") Integer productId);
+  @Modifying
+  @Query(value = "delete from product_wishlist pw where pw.product_id = :productId", nativeQuery = true)
+  void deleteProductById(@Param("productId") Integer productId);
 
 }
