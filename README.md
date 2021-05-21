@@ -2,7 +2,7 @@
 <p align="center"> In this project, we create an e-commerce's Wishlist using API Spring boot, and swagger
 </p>
 
-##Table of contents 
+## Table of contents 
 
 <!--ts-->
 - [Features](#Features)
@@ -14,7 +14,7 @@
 <!--te-->
 
 
-##Features
+## Features
 
 - [x] SWAGGER with endpoints access 
 - [x] Client Register
@@ -24,9 +24,9 @@
 - [x] Consult all products of Client's wishlist
 - [x] Consult if a determined product is in Client's wishlist
 
-##Installation
+## Installation
 
-###Dependencies
+### Dependencies
 
 - Git
 - Java 8
@@ -37,7 +37,7 @@
 - Postgres
 - Editor 
 
-###Clone this Repository
+###C lone this Repository
 ```bash
 $ git clone git@github.com:ra-eng/JavaGirls.git
 ```
@@ -45,7 +45,7 @@ $ git clone git@github.com:ra-eng/JavaGirls.git
 - After that you can RUN
 
 
-##Usage
+## Usage
 
 - Run project
 - Start swagger: http://localhost:8080/swagger-ui.html
