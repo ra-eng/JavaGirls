@@ -27,7 +27,7 @@ public class WishlistController {
   private WishlistService wishlistService;
 
   @ApiOperation(value = "Returns wishlist for a given client id")
-  @GetMapping("{clientId}")
+  @GetMapping("/{clientId}")
   @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<List<ProductDTO>> getProdutosBy(@PathVariable(value = "clientId") Integer clientId) {
     return wishlistService.getProductsBy(clientId);
