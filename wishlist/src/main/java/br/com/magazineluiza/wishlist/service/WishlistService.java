@@ -57,6 +57,18 @@ public class WishlistService {
     return new ResponseEntity<>(products, HttpStatus.OK);
   }
 
+  public ResponseEntity<List<ProductDTO>> getProductById(Integer clientId, Integer productId) {
+    Client client = clientService.findBy(clientId);
+    if (client == null) throw new NullPointerException("Client not found.");
+
+    List<ProductDTO> products = productMapper.toProductDTO(client.getProducts());
+    if (products.size() == 0) throw new NoResultException("Empty Wishlist.");
+
+    products = products.stream().filter(p -> p.getId().equals(productId)).collect(Collectors.toList());
+
+    return new ResponseEntity<List<ProductDTO>>(products, HttpStatus.OK);
+  }
+
   public ClientDTO addProduct(Integer clientId, Integer productId) throws NotFoundException {
     int maximumProducts = 20;
     Client client = null;

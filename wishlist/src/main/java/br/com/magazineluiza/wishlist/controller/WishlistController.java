@@ -59,4 +59,10 @@ public class WishlistController {
       @PathVariable("productId") Integer productId) throws NotFoundException {
     return wishlistService.deleteProduct(clientId, productId);
   }
+
+  @GetMapping(value = "/client/{clientId}/product/{productId}")
+  public ResponseEntity<List<ProductDTO>> getProductById(@PathVariable(value = "clientId") Integer clientId,
+                                         @PathVariable(value = "productId") Integer productId) {
+    return wishlistService.getProductById(clientId, productId);
+  }
 }

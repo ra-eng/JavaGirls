@@ -58,7 +58,7 @@ public class WishlistServiceUnitTest {
 
     given(clientService.findBy(client.getId())).willReturn(client);
     given(productService.findBy(product.getId())).willReturn(product);
-    given(wishlistService.addProduct(client.getId(),product.getId())).willReturn((ClientDTO) client.getProducts());
+    given(wishlistService.addProduct(client.getId(),product.getId())).willReturn(clientMapper.toClientDTO(client));
     given(clientService.addClient(client)).willReturn(client);
 
     ClientDTO clientResponse = wishlistService.addProduct(1, 1);
