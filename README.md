@@ -109,6 +109,7 @@ Input:
       "details": "details",
       "category": "vestimenta",
       "image": "bbb.png"
+    }
 ]
 
 ```
@@ -132,6 +133,7 @@ Input:
       "details": "details",
       "category": "sala",
       "image": "cadeira.png"
+    }
 ]
 ```
 
