@@ -12,8 +12,6 @@ import br.com.magazineluiza.wishlist.repository.ClientRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import javassist.NotFoundException;
-import lombok.SneakyThrows;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -84,27 +82,19 @@ public class WishlistService {
       return clientMapper.toClientDTO(clientService.addClient(client));
   }
 
-  public ResponseEntity<?> deleteProduct(Integer clientId, Integer productId) {
-    Client client = null;
-    List<Product> products;
+  public ResponseEntity<?> deleteProduct(Integer clientId, Integer productId) throws NotFoundException {
+    Client client = clientService.findBy(clientId);
+    if (client == null) throw new NotFoundException("Client not found.");
 
-    try {
-      client = clientService.findBy(clientId);
-      products = client.getProducts();
-      if (products.size() == 0) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-      }
+    List<Product> products = client.getProducts();
+    if (products.size() == 0) throw new NotFoundException("Empty wishlist.");
 
-      for (Product product : products) {
-        if (product.getId().equals(productId)) {
-          clientRepository.removeProduct(productId);
-          return new ResponseEntity<>(HttpStatus.OK);
-        }
+    for (Product product : products) {
+      if (product.getId().equals(productId)) {
+        clientRepository.removeProduct(productId);
+        return ResponseEntity.ok().body("Product removed.");
       }
-    } catch (RuntimeException e) {
-      if (client == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    return ResponseEntity.badRequest().body("Product not found.");
   }
 }

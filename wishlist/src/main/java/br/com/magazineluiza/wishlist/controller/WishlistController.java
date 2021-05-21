@@ -56,7 +56,7 @@ public class WishlistController {
   @DeleteMapping("/{clientId}/{productId}")
   @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<?> deleteProduct(@PathVariable("clientId") Integer clientId,
-      @PathVariable("productId") Integer productId) {
+      @PathVariable("productId") Integer productId) throws NotFoundException {
     return wishlistService.deleteProduct(clientId, productId);
   }
 }
