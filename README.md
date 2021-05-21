@@ -70,7 +70,7 @@ Input:
   "price": $20,
   "details": "details",
   "category": "category",
-  "image": "image",
+  "image": "image"
 }
 ```
 
