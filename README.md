@@ -77,31 +77,121 @@ Input:
 ### :heavy_check_mark: Fetch all products
 Input:
  GET:"/products"
+ ```bash
+ {
+    [
+      "id": 1,
+      "name": "cadeira",
+      "price": 200,
+      "details": "details",
+      "category": "sala",
+      "image": "cadeira.png"
+    },
+    {
+      "id": 3,
+      "name": "cadeira gamer",
+      "price": 900,
+      "details": "details",
+      "category": "sala",
+      "image": "cadeira.png"
+    },
+    {
+      "id": 5,
+      "name": "iphone",
+      "price": 10000,
+      "details": "details",
+      "category": "telefonia",
+      "image": "iphone.png"
+    },
+    {
+      "id": 9,
+      "name": "calça",
+      "price": 5,
+      "details": "details",
+      "category": "vestimenta",
+      "image": "bbb.png"
+    ]
+}
+```
+ 
 
 ### :heavy_check_mark: Search a wishlist for a given client id
  GET:"/wishlist/{clientId}"
 ```bash
-clientId: 
+{
+  [
+      "id": 1,
+      "name": "cadeira",
+      "price": 200,
+      "details": "details",
+      "category": "sala",
+      "image": "cadeira.png"
+    },
+    {
+      "id": 3,
+      "name": "cadeira gamer",
+      "price": 900,
+      "details": "details",
+      "category": "sala",
+      "image": "cadeira.png"
+  ]
+}
 ```
 
 ### :heavy_check_mark: Add a product to the client's wishlist
  Post:"/wishlist/{clientId}/{productId}"
 Link clientId to productId
-
+```bash
+{
+  "id": 1,
+  "cpf": "123.456.789-00",
+  "name": "Alexa",
+  "email": "email@gmail.com",
+  "password": "password",
+  "products":[
+      "id": 1,
+      "name": "cadeira",
+      "price": 200,
+      "details": "details",
+      "category": "sala",
+      "image": "cadeira.png"
+    },
+    {
+      "id": 3,
+      "name": "cadeira gamer",
+      "price": 900,
+      "details": "details",
+      "category": "sala",
+      "image": "cadeira.png"
+  ]
+}
+```
 ### :heavy_check_mark: Deletes a product in client's wishlist
 Deletes a product in client's wishlist by id 
 Input: 
  DELETE:"/wishlist/{clientId}/{productId}"
 ```bash
-clientId: 
-productId:
+"Product removed.Parabens"
 ```
 ### :heavy_check_mark: Search a product by name
 Input:
  POST:"/wishlist/{clientId}/product/{name}"
 ```bash
-clientId: 
-name:
+{
+  "id": 1,
+  "cpf": "123.456.789-00",
+  "name": "Alexa",
+  "email": "email@gmail.com",
+  "password": "password",
+  "products": [
+      "id": 9,
+      "name": "calça",
+      "price": 5,
+      "details": "details",
+      "category": "vestimenta",
+      "image": "bbb.png"
+    ]
+}
 ```
 
 
