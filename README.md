@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 <h1 align="center">🚀 Wishlist 🚀</h1>
-<p align="center">  In this project we create an e-commerce's Wishlist using API Spring boogit and swagger
+<p align="center">  In this project we create an e-commerce's Wishlist using API Spring boot and git and swagger
 </p>
 
 ## :heavy_check_mark: Table of contents 
