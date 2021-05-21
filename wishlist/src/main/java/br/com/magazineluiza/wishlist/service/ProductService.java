@@ -4,6 +4,7 @@ import br.com.magazineluiza.wishlist.dto.ProductDTO;
 import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.mapper.ProductMapper;
 import br.com.magazineluiza.wishlist.repository.ProductRepository;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ProductService {
   @Autowired
   private ProductMapper productMapper;
 
-  public Iterable<Product> getAll() {
+  public List<Product> getAll() {
     return productRepository.findAll();
   }
 

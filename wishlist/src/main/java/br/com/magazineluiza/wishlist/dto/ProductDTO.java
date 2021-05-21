@@ -16,18 +16,22 @@ public class ProductDTO {
 
   @ApiModelProperty(notes = "The product´s name", example = "Sabre de Luz")
   @NotBlank(message = "{value.not.blank}")
+  @NotNull
   private String name;
 
   @ApiModelProperty(notes = "The product´s price", example = "9000")
   @NotNull(message = "{value.not.null}")
+  @NotNull
   private BigDecimal price;
 
   @ApiModelProperty(notes = "The product´s details", example = "Vermelho")
   @NotBlank(message = "{value.not.blank}")
+  @NotNull
   private String details;
 
   @ApiModelProperty(notes = "The product´s category", example = "Armas")
   @NotBlank(message = "{value.not.blank}")
+  @NotNull
   private String category;
 
   @ApiModelProperty(notes = "The product image", required = false, hidden = true)
