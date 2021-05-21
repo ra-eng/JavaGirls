@@ -1,5 +1,5 @@
 <h1 align="center">🚀 Wishlist 🚀</h1>
-<p align="center">  In this project we create an e-commerce's Wishlist using API Spring boot and git and swagger
+<p align="center">  In this project we create an e-commerce's Wishlist using API Spring boot and git and swagger.
 </p>
 
 ## :heavy_check_mark: Table of contents 
@@ -55,11 +55,10 @@ Input:
  POST:"/clients"
 ```bash
 {
-  "cpf":  , 
-  "email":  ,
-  "name":  ,
-  "password":  
-  
+  "cpf": "123.456.789-10", 
+  "email": "email@gmail.com",
+  "name": "Name",
+  "password": "password"   
 }
 ```
 ### :heavy_check_mark: Add new Product
@@ -67,11 +66,11 @@ Input:
  POST:"/products"
 ```bash
 {
-  "name":  ,
-  "price":  ,
-  "details":  ,
-  "category":  ,
-  "image":  ,
+  "name": "Name ,
+  "price": $20,
+  "details": "details",
+  "category": "category",
+  "image": "image",
 }
 ```
 
