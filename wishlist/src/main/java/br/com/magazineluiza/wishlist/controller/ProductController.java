@@ -1,6 +1,8 @@
-package br.com.magazineluiza.wishlist.product;
+package br.com.magazineluiza.wishlist.controller;
 
-import br.com.magazineluiza.wishlist.common.ApiResponse;
+import br.com.magazineluiza.wishlist.entity.Product;
+import br.com.magazineluiza.wishlist.dto.ProductDTO;
+import br.com.magazineluiza.wishlist.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,7 @@ public class ProductController {
 
   @ApiOperation(value = "Add new Products", response = ProductDTO.class)
   @PostMapping
-  public ResponseEntity<ApiResponse> addProduct(@RequestBody @Valid ProductDTO productDTO) {
+  public ProductDTO addProduct(@RequestBody @Valid ProductDTO productDTO) {
     return productService.addProduct(productDTO);
   }
 }

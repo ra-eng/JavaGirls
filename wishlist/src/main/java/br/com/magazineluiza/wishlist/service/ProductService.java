@@ -1,10 +1,12 @@
-package br.com.magazineluiza.wishlist.product;
+package br.com.magazineluiza.wishlist.service;
 
-import br.com.magazineluiza.wishlist.common.ApiResponse;
 import java.util.Optional;
+
+import br.com.magazineluiza.wishlist.dto.ProductDTO;
+import br.com.magazineluiza.wishlist.entity.Product;
+import br.com.magazineluiza.wishlist.mapper.ProductMapper;
+import br.com.magazineluiza.wishlist.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,19 +22,15 @@ public class ProductService {
     return productRepository.findAll();
   }
 
-  public ResponseEntity<ApiResponse> addProduct(ProductDTO productDTO) {
+  public ProductDTO addProduct(ProductDTO productDTO) {
     try {
-      productRepository.save(productMapper.toProduct(productDTO));
+      return productMapper.toProductDTO(productRepository.save(productMapper.toProduct(productDTO)));
     } catch (RuntimeException e) {
-      return new ResponseEntity<>(new ApiResponse(false, e.getMessage()),
-          HttpStatus.BAD_REQUEST);
+      throw new RuntimeException(e.getMessage());
     }
-    return new ResponseEntity<>(new ApiResponse(true, "Product has been added"),
-        HttpStatus.CREATED);
   }
 
   public Product findBy(Integer id) {
-
     Optional<Product> product = productRepository.findById(id);
     return product.orElse(null);
   }

@@ -1,21 +1,21 @@
-package br.com.magazineluiza.wishlist.wishlist;
+package br.com.magazineluiza.wishlist.service;
 
-import br.com.magazineluiza.wishlist.client.Client;
-import br.com.magazineluiza.wishlist.client.ClientDTO;
-import br.com.magazineluiza.wishlist.client.ClientMapper;
-import br.com.magazineluiza.wishlist.client.ClientRepository;
-import br.com.magazineluiza.wishlist.client.ClientService;
-import br.com.magazineluiza.wishlist.common.ApiResponse;
+import br.com.magazineluiza.wishlist.entity.Client;
+import br.com.magazineluiza.wishlist.dto.ClientDTO;
+import br.com.magazineluiza.wishlist.mapper.ClientMapper;
+import br.com.magazineluiza.wishlist.repository.ClientRepository;
+
 import br.com.magazineluiza.wishlist.exception.IdAlreadyAddedException;
 import br.com.magazineluiza.wishlist.exception.MaximumSizeException;
-import br.com.magazineluiza.wishlist.product.Product;
-import br.com.magazineluiza.wishlist.product.ProductDTO;
-import br.com.magazineluiza.wishlist.product.ProductMapper;
-import br.com.magazineluiza.wishlist.product.ProductService;
+import br.com.magazineluiza.wishlist.entity.Product;
+import br.com.magazineluiza.wishlist.dto.ProductDTO;
+import br.com.magazineluiza.wishlist.mapper.ProductMapper;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -45,7 +45,9 @@ public class WishlistService {
 
     try {
       client = clientService.findBy(clientId);
+      if (client == null) throw new NotFoundException("Client not found.");
       product = productService.findBy(productId);
+      if (product == null) throw new NotFoundException("Product not found.");
 
       for (Product p : client.getProducts()) {
         if (p.getId().equals(productId)) {
@@ -59,29 +61,18 @@ public class WishlistService {
 
       client.addProduct(product);
       return clientService.addClient(client);
+    } catch (RuntimeException | NotFoundException ignored){
 
-    } catch (Exception e) {
-      if (client == null) {
-        throw new IdAlreadyAddedException(productId);
-      }
-      if (product == null) {
-        throw new IdAlreadyAddedException(productId);
-      }
-      throw new IdAlreadyAddedException(productId);
     }
+    return client;
   }
 
-  public List<Product> getProductsBy(Integer clientId) throws NotFoundException {
-    ClientDTO client;
-    try {
-      client = clientMapper.toClientDTO(clientService.findBy(clientId));
-    } catch (RuntimeException e) {
-      throw new NotFoundException();
-    }
+  public List<Product> getProductsBy(Integer clientId) {
+    ClientDTO client = clientMapper.toClientDTO(clientService.findBy(clientId));
     return client.getProducts();
   }
 
-  public ResponseEntity<ApiResponse> deleteProduct(Integer clientId, Integer productId) {
+  public ResponseEntity<?> deleteProduct(Integer clientId, Integer productId) {
     Client client = null;
     List<Product> products;
 
@@ -89,38 +80,29 @@ public class WishlistService {
       client = clientService.findBy(clientId);
       products = client.getProducts();
       if (products.size() == 0) {
-        return new ResponseEntity<>(
-            new ApiResponse(false,
-                String.format("Client doesn't any products on the wishlist", productId)),
-            HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       }
 
       for (Product product : products) {
         if (product.getId().equals(productId)) {
           clientRepository.removeProduct(productId);
-          return new ResponseEntity<>(
-              new ApiResponse(true, "Product has been deleted from Wishlist"), HttpStatus.OK);
+          return new ResponseEntity<>(HttpStatus.OK);
         }
       }
     } catch (RuntimeException e) {
       if (client == null) {
-        return new ResponseEntity<>(
-            new ApiResponse(false, String.format("No client id %d present", clientId)),
-            HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       }
-      return new ResponseEntity<>(new ApiResponse(false, e.getMessage()),
-          HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-    return new ResponseEntity<>(
-        new ApiResponse(false, String.format("No product id %d present", productId)),
-        HttpStatus.NOT_FOUND);
+    return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
   }
 
   public ResponseEntity<List<ProductDTO>> getProductsByName(String productName, Integer clientId) {
     ClientDTO clientDTO = clientMapper.toClientDTO(clientService.findBy(clientId));
     List<ProductDTO> products = productMapper.toProductDTO(clientDTO.getProducts());
     List<ProductDTO> collect = products.stream().filter(p -> p.getName()
-        .equalsIgnoreCase(productName)).collect(Collectors.toList());
+            .toLowerCase().contains(productName.toLowerCase())).collect(Collectors.toList());
 
     return new ResponseEntity<>(collect, HttpStatus.OK);
   }

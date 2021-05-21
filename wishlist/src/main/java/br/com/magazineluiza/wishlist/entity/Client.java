@@ -1,6 +1,5 @@
-package br.com.magazineluiza.wishlist.client;
+package br.com.magazineluiza.wishlist.entity;
 
-import br.com.magazineluiza.wishlist.product.Product;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;

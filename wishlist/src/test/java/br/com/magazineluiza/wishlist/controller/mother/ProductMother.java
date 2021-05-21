@@ -1,6 +1,6 @@
 package br.com.magazineluiza.wishlist.controller.mother;
 
-import br.com.magazineluiza.wishlist.product.Product;
+import br.com.magazineluiza.wishlist.entity.Product;
 import java.math.BigDecimal;
 
 public class ProductMother {

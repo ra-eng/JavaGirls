@@ -1,5 +1,7 @@
-package br.com.magazineluiza.wishlist.client;
+package br.com.magazineluiza.wishlist.mapper;
 
+import br.com.magazineluiza.wishlist.entity.Client;
+import br.com.magazineluiza.wishlist.dto.ClientDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

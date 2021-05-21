@@ -10,10 +10,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.magazineluiza.wishlist.client.Client;
-import br.com.magazineluiza.wishlist.product.Product;
-import br.com.magazineluiza.wishlist.wishlist.WishlistController;
-import br.com.magazineluiza.wishlist.wishlist.WishlistService;
+import br.com.magazineluiza.wishlist.entity.Client;
+import br.com.magazineluiza.wishlist.entity.Product;
+import br.com.magazineluiza.wishlist.controller.WishlistController;
+import br.com.magazineluiza.wishlist.service.WishlistService;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
