@@ -6,6 +6,8 @@ import br.com.magazineluiza.wishlist.mapper.ClientMapper;
 import br.com.magazineluiza.wishlist.repository.ClientRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,11 +23,15 @@ public class ClientService {
     return clientRepository.save(client);
   }
 
-  public ClientDTO addClient(ClientDTO clientDTO) {
+  public Object addClient(ClientDTO clientDTO) {
+    Optional<Client> client = Optional.ofNullable(clientRepository.findByCpf(clientDTO.getCpf()));
+    if (client.isPresent()) return ResponseEntity.badRequest().body(
+            "CPF already exist"
+    );
     try {
       return clientMapper.toClientDTO(clientRepository.save(clientMapper.toClient(clientDTO)));
     } catch (RuntimeException e) {
-      throw new RuntimeException(e.getMessage());
+      return ResponseEntity.badRequest().body("Error adding client.");
     }
   }
 
