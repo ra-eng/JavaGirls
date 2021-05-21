@@ -1,12 +1,8 @@
-<p align="center"> 
-<img src="" height="50%" width ="50%">
+<h1 align="center">🚀 Wishlist 🚀</h1>
+<p align="center">  In this project, we create an e-commerce's Wishlist using API Spring boot, and swagger
 </p>
 
-<h1 align="center">Wishlist</h1>
-<p align="center"> In this project, we create an e-commerce's Wishlist using API Spring boot, and swagger
-</p>
-
-## Table of contents 
+## :heavy_check_mark: Table of contents 
 
 <!--ts-->
 - [Features](#Features)
@@ -18,7 +14,7 @@
 <!--te-->
 
 
-## Features
+## :heavy_check_mark: Features
 
 - [x] SWAGGER with endpoints access 
 - [x] Client Register
@@ -28,20 +24,19 @@
 - [x] Consult all products of Client's wishlist
 - [x] Consult if a determined product is in Client's wishlist
 
-## Installation
+## :heavy_check_mark: Installation
 
-### Dependencies
+### 🛠 Technologies and Dependencies
+* [Git](#Git)
+* [Java 8](#Java 8)
+* [Maven](#Maven)
+* [Spring boot 2.4.5](#Spring boot 2.4.5)
+* [JPA](#JPA)
+* [Lombok](#Lombok)
+* [Postgres](#Postgres)
+* [Editor](#Editor4.5)
 
-- Git
-- Java 8
-- Maven
-- Spring boot 2.4.5
-- JPA
-- Lombok 
-- Postgres
-- Editor 
-
-### Clone this Repository
+### How to use this repository
 ```bash
 $ git clone git@github.com:ra-eng/JavaGirls.git
 ```
