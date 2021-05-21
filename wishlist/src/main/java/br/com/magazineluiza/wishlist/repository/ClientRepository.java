@@ -17,6 +17,8 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
 
   Client findByCpf(String cpf);
 
+  Client findByEmail(String email);
+
   @Modifying
   @Query(value = "delete from wishlist w where w.id_product = :productId", nativeQuery = true)
   void removeProduct(@Param("productId") Integer productId);
