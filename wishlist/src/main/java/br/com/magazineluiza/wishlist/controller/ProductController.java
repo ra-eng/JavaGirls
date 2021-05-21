@@ -36,7 +36,7 @@ public class ProductController {
 
   @ApiOperation(value = "Fetch all products", response = ProductDTO.class)
   @GetMapping
-  public List<Product> getAll() {
+  public List<ProductDTO> getAll() {
     return productService.getAll();
   }
 }

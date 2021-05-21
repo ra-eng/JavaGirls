@@ -92,7 +92,7 @@ public class ProductControllerUnitTest {
   @Test
   public void WhenGetAllThenReturnSucess()
       throws Exception {
-    List<Product> productList = getProductList();
+    List<ProductDTO> productList = getProductList();
 
     given(productService.getAll()).willReturn(productList);
 

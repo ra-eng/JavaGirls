@@ -37,7 +37,7 @@ public class WishlistService {
   @Autowired
   private ClientRepository clientRepository;
 
-  public Client addProduct(Integer clientId, Integer productId) {
+  public ClientDTO addProduct(Integer clientId, Integer productId) {
     int maximumProducts = 20;
     Client client = null;
     Product product = null;
@@ -60,11 +60,11 @@ public class WishlistService {
       }
 
       client.addProduct(product);
-      return clientService.addClient(client);
+      return clientMapper.toClientDTO(clientService.addClient(client));
     } catch (RuntimeException | NotFoundException e) {
 
     }
-    return client;
+    return clientMapper.toClientDTO(client);
   }
 
   public ResponseEntity<List<ProductDTO>> getProductsBy(Integer clientId) {

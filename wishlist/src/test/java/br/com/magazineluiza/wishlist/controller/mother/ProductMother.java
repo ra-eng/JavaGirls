@@ -20,9 +20,9 @@ public class ProductMother {
 
   }
 
-  public static List<Product> getProductList() {
+  public static List<ProductDTO> getProductList() {
 
-    return Arrays.asList(new Product(1, "Teste", new BigDecimal(128.90), "teste", "teste", "test"));
+    return Arrays.asList(new ProductDTO(1, "Teste", new BigDecimal(128.90), "teste", "teste", "test"));
 
   }
 

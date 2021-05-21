@@ -19,8 +19,8 @@ public class ProductService {
   @Autowired
   private ProductMapper productMapper;
 
-  public List<Product> getAll() {
-    return productRepository.findAll();
+  public List<ProductDTO> getAll() {
+    return productMapper.toProductDTO(productRepository.findAll());
   }
 
   public Object addProduct(ProductDTO productDTO) {

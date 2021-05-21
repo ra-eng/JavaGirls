@@ -1,8 +1,7 @@
 package br.com.magazineluiza.wishlist.controller.controller;
 
 
-import static br.com.magazineluiza.wishlist.controller.mother.ClientMother.getClient;
-import static br.com.magazineluiza.wishlist.controller.mother.ClientMother.getProductListByClientId;
+import static br.com.magazineluiza.wishlist.controller.mother.ClientMother.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -11,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import br.com.magazineluiza.wishlist.controller.WishlistController;
+import br.com.magazineluiza.wishlist.dto.ClientDTO;
 import br.com.magazineluiza.wishlist.dto.ProductDTO;
 import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.entity.Product;
@@ -56,7 +56,7 @@ public class WishlistControllerUnitTest {
   @Test
   public void givenAValidClientIdAndAValidProductIdWhenAddProductThenReturnSucess()
       throws Exception {
-    Client client = getClient();
+    ClientDTO client = getClientDto();
     given(wishlistService.addProduct(1, 1)).willReturn(client);
 
     mockmvc.perform(post(WISHLIST_ENDPOINT + "/" + "1" + "/" + "1"))

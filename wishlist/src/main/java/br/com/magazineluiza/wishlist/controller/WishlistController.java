@@ -1,5 +1,6 @@
 package br.com.magazineluiza.wishlist.controller;
 
+import br.com.magazineluiza.wishlist.dto.ClientDTO;
 import br.com.magazineluiza.wishlist.dto.ProductDTO;
 import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.entity.Product;
@@ -44,8 +45,8 @@ public class WishlistController {
   @ApiOperation(value = "Add a product to the client's wishlist")
   @PostMapping("/{clientId}/{productId}")
   @ResponseStatus(HttpStatus.CREATED)
-  public Client addProduct(@PathVariable("clientId") Integer clientId,
-      @PathVariable("productId") Integer productId) {
+  public ClientDTO addProduct(@PathVariable("clientId") Integer clientId,
+                              @PathVariable("productId") Integer productId) {
     return wishlistService.addProduct(clientId, productId);
   }
 
@@ -56,5 +57,4 @@ public class WishlistController {
       @PathVariable("productId") Integer productId) {
     return wishlistService.deleteProduct(clientId, productId);
   }
-
 }
