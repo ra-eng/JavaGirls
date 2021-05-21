@@ -52,7 +52,7 @@ $ git clone git@github.com:ra-eng/JavaGirls.git
 
 ### :heavy_check_mark: Add new Client
 Input:
-# POST:"/clients"
+ POST:"/clients"
 ```bash
 {
   "cpf":  , 
@@ -64,7 +64,7 @@ Input:
 ```
 ### :heavy_check_mark: Add new Product
 Input:
-# POST:"/products"
+ POST:"/products"
 ```bash
 {
   "name":  ,
@@ -77,29 +77,29 @@ Input:
 
 ### :heavy_check_mark: Fetch all products
 Input:
-# GET:"/products"
+ GET:"/products"
 
 ### :heavy_check_mark: Search a wishlist for a given client id
-# GET:"/wishlist/{clientId}"
+ GET:"/wishlist/{clientId}"
 ```bash
 clientId: 
 ```
 
 ### :heavy_check_mark: Add a product to the client's wishlist
-# Post:"/wishlist/{clientId}/{productId}"
+ Post:"/wishlist/{clientId}/{productId}"
 Link clientId to productId
 
 ### :heavy_check_mark: Deletes a product in client's wishlist
 Deletes a product in client's wishlist by id 
 Input: 
-# DELETE:"/wishlist/{clientId}/{productId}"
+ DELETE:"/wishlist/{clientId}/{productId}"
 ```bash
 clientId: 
 productId:
 ```
 ### :heavy_check_mark: Search a product by name
 Input:
-# POST:"/wishlist/{clientId}/product/{name}"
+ POST:"/wishlist/{clientId}/product/{name}"
 ```bash
 clientId: 
 name:
