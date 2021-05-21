@@ -30,7 +30,7 @@ public class ProductController {
   @ApiOperation(value = "Add new Products", response = ProductDTO.class)
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ProductDTO addProduct(@RequestBody @Valid ProductDTO productDTO) {
+  public Object addProduct(@RequestBody @Valid ProductDTO productDTO) {
     return productService.addProduct(productDTO);
   }
 

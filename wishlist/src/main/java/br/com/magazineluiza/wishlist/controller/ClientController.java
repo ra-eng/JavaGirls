@@ -23,7 +23,7 @@ public class ClientController {
   @ApiOperation(value = "Add new Clients", response = ClientDTO.class)
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ClientDTO addClient(@RequestBody @Valid ClientDTO clientDTO) {
+  public Object addClient(@RequestBody @Valid ClientDTO clientDTO) {
     return clientService.addClient(clientDTO);
   }
 }
