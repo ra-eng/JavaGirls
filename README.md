@@ -28,9 +28,9 @@
 
 ### 🛠 Technologies and Dependencies
 * [Git](#Git)
-* [Java 8](#Java 8)
+* [Java8](#Java8)
 * [Maven](#Maven)
-* [Spring boot 2.4.5](#Spring boot 2.4.5)
+* [Springboot2.4.5](#Springboot2.4.5)
 * [JPA](#JPA)
 * [Lombok](#Lombok)
 * [Postgres](#Postgres)
