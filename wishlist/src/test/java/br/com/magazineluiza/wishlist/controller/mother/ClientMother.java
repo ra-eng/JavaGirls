@@ -1,0 +1,22 @@
+package br.com.magazineluiza.wishlist.controller.mother;
+
+import br.com.magazineluiza.wishlist.client.Client;
+import br.com.magazineluiza.wishlist.product.Product;
+import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class ClientMother {
+
+  public static List<Product> getProductListByClientId() {
+
+    return Arrays.asList(new Product(1, "Teste", new BigDecimal(128.90), "teste", "teste", "test"));
+
+  }
+
+  public static Client getClient() {
+    return new Client(1, "Teste", "Teste", "Teste", "Teste", Collections.emptyList());
+  }
+
+}
