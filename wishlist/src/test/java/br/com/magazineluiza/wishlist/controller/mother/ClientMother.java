@@ -1,5 +1,6 @@
 package br.com.magazineluiza.wishlist.controller.mother;
 
+import br.com.magazineluiza.wishlist.dto.ClientDTO;
 import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.entity.Product;
 import java.math.BigDecimal;
@@ -17,6 +18,10 @@ public class ClientMother {
 
   public static Client getClient() {
     return new Client(1, "Teste", "Teste", "Teste", "Teste", Collections.emptyList());
+  }
+
+  public static ClientDTO getClientDto() {
+    return new ClientDTO(1, "Teste", "Teste", "Teste@Teste.com", "Teste", Collections.emptyList());
   }
 
 }

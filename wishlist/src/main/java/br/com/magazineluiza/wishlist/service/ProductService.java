@@ -1,11 +1,10 @@
 package br.com.magazineluiza.wishlist.service;
 
-import java.util.Optional;
-
 import br.com.magazineluiza.wishlist.dto.ProductDTO;
 import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.mapper.ProductMapper;
 import br.com.magazineluiza.wishlist.repository.ProductRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,8 @@ public class ProductService {
 
   public ProductDTO addProduct(ProductDTO productDTO) {
     try {
-      return productMapper.toProductDTO(productRepository.save(productMapper.toProduct(productDTO)));
+      return productMapper
+          .toProductDTO(productRepository.save(productMapper.toProduct(productDTO)));
     } catch (RuntimeException e) {
       throw new RuntimeException(e.getMessage());
     }

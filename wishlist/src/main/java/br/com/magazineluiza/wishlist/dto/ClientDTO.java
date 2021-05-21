@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @ApiModel(description = "Details about the client")
 public class ClientDTO {
@@ -16,19 +17,23 @@ public class ClientDTO {
 
   @ApiModelProperty(notes = "The client´s CPF", example = "100.111.122-22")
   @NotBlank(message = "{value.not.blank}")
+  @NotNull
   private String cpf;
 
   @ApiModelProperty(notes = "The client´s name", example = "Darth Vader")
   @NotBlank(message = "{value.not.blank}")
+  @NotNull
   private String name;
 
   @ApiModelProperty(notes = "The client´s email", example = "OEscolhido@Imperio.com")
   @Email(message = "{email.not.null}")
   @NotBlank(message = "{value.not.blank}")
+  @NotNull
   private String email;
 
   @ApiModelProperty(notes = "The client´s password", example = "OLadoNegroDaForça")
   @NotBlank(message = "{value.not.blank}")
+  @NotNull
   private String password;
 
   @ApiModelProperty(required = false, hidden = true)

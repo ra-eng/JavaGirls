@@ -10,9 +10,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import br.com.magazineluiza.wishlist.controller.WishlistController;
 import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.entity.Product;
-import br.com.magazineluiza.wishlist.controller.WishlistController;
 import br.com.magazineluiza.wishlist.service.WishlistService;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -55,9 +55,6 @@ public class WishlistControllerUnitTest {
       throws Exception {
     Client client = getClient();
     given(wishlistService.addProduct(1, 1)).willReturn(client);
-
-//    Gson gson = new Gson();
-//    String jsonBody = gson.toJson(client);
 
     mockmvc.perform(post(WISHLIST_ENDPOINT + "/" + "1" + "/" + "1"))
         .andExpect(status().isCreated())

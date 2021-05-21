@@ -1,8 +1,7 @@
 package br.com.magazineluiza.wishlist.repository;
 
-import java.util.Optional;
-
 import br.com.magazineluiza.wishlist.entity.Client;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

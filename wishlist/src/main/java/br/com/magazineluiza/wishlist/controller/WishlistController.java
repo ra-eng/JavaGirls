@@ -1,8 +1,8 @@
 package br.com.magazineluiza.wishlist.controller;
 
+import br.com.magazineluiza.wishlist.dto.ProductDTO;
 import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.entity.Product;
-import br.com.magazineluiza.wishlist.dto.ProductDTO;
 import br.com.magazineluiza.wishlist.service.WishlistService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
@@ -27,7 +27,7 @@ public class WishlistController {
 
   @ApiOperation(value = "Returns wishlist for a given client id")
   @GetMapping("{clientId}")
-  public List<Product> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId){
+  public List<Product> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId) {
     return wishlistService.getProductsBy(clientId);
   }
 

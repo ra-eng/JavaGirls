@@ -1,7 +1,7 @@
 package br.com.magazineluiza.wishlist.controller;
 
-import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.dto.ProductDTO;
+import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import javax.validation.Valid;

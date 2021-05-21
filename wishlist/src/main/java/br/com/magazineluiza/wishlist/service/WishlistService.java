@@ -1,19 +1,16 @@
 package br.com.magazineluiza.wishlist.service;
 
-import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.dto.ClientDTO;
-import br.com.magazineluiza.wishlist.mapper.ClientMapper;
-import br.com.magazineluiza.wishlist.repository.ClientRepository;
-
+import br.com.magazineluiza.wishlist.dto.ProductDTO;
+import br.com.magazineluiza.wishlist.entity.Client;
+import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.exception.IdAlreadyAddedException;
 import br.com.magazineluiza.wishlist.exception.MaximumSizeException;
-import br.com.magazineluiza.wishlist.entity.Product;
-import br.com.magazineluiza.wishlist.dto.ProductDTO;
+import br.com.magazineluiza.wishlist.mapper.ClientMapper;
 import br.com.magazineluiza.wishlist.mapper.ProductMapper;
-
+import br.com.magazineluiza.wishlist.repository.ClientRepository;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,9 +42,13 @@ public class WishlistService {
 
     try {
       client = clientService.findBy(clientId);
-      if (client == null) throw new NotFoundException("Client not found.");
+      if (client == null) {
+        throw new NotFoundException("Client not found.");
+      }
       product = productService.findBy(productId);
-      if (product == null) throw new NotFoundException("Product not found.");
+      if (product == null) {
+        throw new NotFoundException("Product not found.");
+      }
 
       for (Product p : client.getProducts()) {
         if (p.getId().equals(productId)) {
@@ -61,7 +62,7 @@ public class WishlistService {
 
       client.addProduct(product);
       return clientService.addClient(client);
-    } catch (RuntimeException | NotFoundException ignored){
+    } catch (RuntimeException | NotFoundException ignored) {
 
     }
     return client;
@@ -102,7 +103,7 @@ public class WishlistService {
     ClientDTO clientDTO = clientMapper.toClientDTO(clientService.findBy(clientId));
     List<ProductDTO> products = productMapper.toProductDTO(clientDTO.getProducts());
     List<ProductDTO> collect = products.stream().filter(p -> p.getName()
-            .toLowerCase().contains(productName.toLowerCase())).collect(Collectors.toList());
+        .toLowerCase().contains(productName.toLowerCase())).collect(Collectors.toList());
 
     return new ResponseEntity<>(collect, HttpStatus.OK);
   }

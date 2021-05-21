@@ -1,6 +1,5 @@
 package br.com.magazineluiza.wishlist.entity;
 
-import br.com.magazineluiza.wishlist.entity.Client;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.util.ArrayList;

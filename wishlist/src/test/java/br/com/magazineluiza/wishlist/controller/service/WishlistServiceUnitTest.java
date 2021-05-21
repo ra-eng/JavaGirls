@@ -8,12 +8,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import br.com.magazineluiza.wishlist.entity.Client;
-import br.com.magazineluiza.wishlist.mapper.ClientMapper;
-import br.com.magazineluiza.wishlist.repository.ClientRepository;
-import br.com.magazineluiza.wishlist.service.ClientService;
 import br.com.magazineluiza.wishlist.entity.Product;
+import br.com.magazineluiza.wishlist.mapper.ClientMapper;
 import br.com.magazineluiza.wishlist.mapper.ProductMapper;
+import br.com.magazineluiza.wishlist.repository.ClientRepository;
 import br.com.magazineluiza.wishlist.repository.ProductRepository;
+import br.com.magazineluiza.wishlist.service.ClientService;
 import br.com.magazineluiza.wishlist.service.ProductService;
 import br.com.magazineluiza.wishlist.service.WishlistService;
 import org.junit.jupiter.api.Test;

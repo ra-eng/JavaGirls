@@ -1,11 +1,10 @@
 package br.com.magazineluiza.wishlist.service;
 
-import br.com.magazineluiza.wishlist.entity.Client;
-import java.util.Optional;
-
 import br.com.magazineluiza.wishlist.dto.ClientDTO;
+import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.mapper.ClientMapper;
 import br.com.magazineluiza.wishlist.repository.ClientRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
