@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import br.com.magazineluiza.wishlist.controller.ProductController;
 import br.com.magazineluiza.wishlist.dto.ProductDTO;
-import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.service.ProductService;
 import com.google.gson.Gson;
 import java.util.List;

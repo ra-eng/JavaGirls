@@ -5,10 +5,8 @@ import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.mapper.ClientMapper;
 import br.com.magazineluiza.wishlist.repository.ClientRepository;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

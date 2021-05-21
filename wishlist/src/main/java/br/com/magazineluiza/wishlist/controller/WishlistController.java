@@ -2,8 +2,6 @@ package br.com.magazineluiza.wishlist.controller;
 
 import br.com.magazineluiza.wishlist.dto.ClientDTO;
 import br.com.magazineluiza.wishlist.dto.ProductDTO;
-import br.com.magazineluiza.wishlist.entity.Client;
-import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.service.WishlistService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
