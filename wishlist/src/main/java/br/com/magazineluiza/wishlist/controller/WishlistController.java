@@ -27,12 +27,14 @@ public class WishlistController {
 
   @ApiOperation(value = "Returns wishlist for a given client id")
   @GetMapping("{clientId}")
-  public List<Product> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId) {
+  @ResponseStatus(HttpStatus.OK)
+  public ResponseEntity<List<ProductDTO>> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId) {
     return wishlistService.getProductsBy(clientId);
   }
 
   @ApiOperation(value = "Returns a product searched for by name")
   @GetMapping("/{clientId}/product/{name}")
+  @ResponseStatus(HttpStatus.OK)
   public ResponseEntity<List<ProductDTO>> getProdutosByName(
       @PathVariable(value = "clientId") Integer clientId,
       @PathVariable(value = "name") String productName) {

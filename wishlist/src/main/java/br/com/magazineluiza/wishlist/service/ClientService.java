@@ -25,9 +25,7 @@ public class ClientService {
 
   public Object addClient(ClientDTO clientDTO) {
     Optional<Client> client = Optional.ofNullable(clientRepository.findByCpf(clientDTO.getCpf()));
-    if (client.isPresent()) return ResponseEntity.badRequest().body(
-            "CPF already exist"
-    );
+    if (client.isPresent()) return ResponseEntity.badRequest().body("CPF already exist");
     try {
       return clientMapper.toClientDTO(clientRepository.save(clientMapper.toClient(clientDTO)));
     } catch (RuntimeException e) {

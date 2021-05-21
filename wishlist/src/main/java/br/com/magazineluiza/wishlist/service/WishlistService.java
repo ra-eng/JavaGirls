@@ -10,8 +10,10 @@ import br.com.magazineluiza.wishlist.mapper.ClientMapper;
 import br.com.magazineluiza.wishlist.mapper.ProductMapper;
 import br.com.magazineluiza.wishlist.repository.ClientRepository;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javassist.NotFoundException;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,13 +44,10 @@ public class WishlistService {
 
     try {
       client = clientService.findBy(clientId);
-      if (client == null) {
-        throw new NotFoundException("Client not found.");
-      }
+      if (client == null) throw new NotFoundException("Client not found.");
+
       product = productService.findBy(productId);
-      if (product == null) {
-        throw new NotFoundException("Product not found.");
-      }
+      if (product == null) throw new NotFoundException("Product not found.");
 
       for (Product p : client.getProducts()) {
         if (p.getId().equals(productId)) {
@@ -62,15 +61,17 @@ public class WishlistService {
 
       client.addProduct(product);
       return clientService.addClient(client);
-    } catch (RuntimeException | NotFoundException ignored) {
+    } catch (RuntimeException | NotFoundException e) {
 
     }
     return client;
   }
 
-  public List<Product> getProductsBy(Integer clientId) {
+  public ResponseEntity<List<ProductDTO>> getProductsBy(Integer clientId) {
     ClientDTO client = clientMapper.toClientDTO(clientService.findBy(clientId));
-    return client.getProducts();
+    if (client == null) throw new NullPointerException("Client not found.");
+    return new ResponseEntity<List<ProductDTO>>(productMapper.toProductDTO(client.getProducts()),
+            HttpStatus.OK);
   }
 
   public ResponseEntity<?> deleteProduct(Integer clientId, Integer productId) {
@@ -91,9 +92,7 @@ public class WishlistService {
         }
       }
     } catch (RuntimeException e) {
-      if (client == null) {
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-      }
+      if (client == null) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

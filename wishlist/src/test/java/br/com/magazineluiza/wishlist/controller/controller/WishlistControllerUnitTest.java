@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import br.com.magazineluiza.wishlist.controller.WishlistController;
+import br.com.magazineluiza.wishlist.dto.ProductDTO;
 import br.com.magazineluiza.wishlist.entity.Client;
 import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.service.WishlistService;
@@ -19,6 +20,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest({
@@ -37,11 +40,11 @@ public class WishlistControllerUnitTest {
 
   @Test
   public void givenAValidClientIdWhengetProductsByThenReturnProductList() throws Exception {
-    List<Product> productList = getProductListByClientId();
-    given(wishlistService.getProductsBy(1)).willReturn(productList);
+    List<ProductDTO> productList = getProductListByClientId();
+    given(wishlistService.getProductsBy(1)).willReturn(new ResponseEntity<List<ProductDTO>>(productList, HttpStatus.CREATED));
 
     mockmvc.perform(get(WISHLIST_ENDPOINT + "/" + "1"))
-        .andExpect(status().isOk())
+        .andExpect(status().isCreated())
         .andDo(print())
         .andExpect(jsonPath("$[0].id").value(productList.get(0).getId()))
         .andExpect(jsonPath("$[0].name").value(productList.get(0).getName()))
