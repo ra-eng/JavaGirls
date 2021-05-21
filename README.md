@@ -1,3 +1,7 @@
+<p align="center"> 
+<img src="" height="50%" width ="50%">
+</p>
+
 <h1 align="center">Wishlist</h1>
 <p align="center"> In this project, we create an e-commerce's Wishlist using API Spring boot, and swagger
 </p>
