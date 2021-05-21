@@ -36,7 +36,7 @@
 * [Postgres](#Postgres)
 * [Editor](#Editor4.5)
 
-### How to use this repository
+### :arrow_forward: How to use this repository
 ```bash
 $ git clone git@github.com:ra-eng/JavaGirls.git
 ```
@@ -44,12 +44,12 @@ $ git clone git@github.com:ra-eng/JavaGirls.git
 - After that you can RUN
 
 
-## Usage
+## :arrow_forward: Usage
 
 - Run project
 - Start swagger: http://localhost:8080/swagger-ui.html
 
-### Add new Client
+### :heavy_check_mark: Add new Client
 Input:
 ```bash
 {
@@ -60,7 +60,7 @@ Input:
   
 }
 ```
-### Add new Product
+### :heavy_check_mark: Add new Product
 Input:
 ```bash
 {
@@ -72,19 +72,19 @@ Input:
 }
 ```
 
-### Fetch all products
+### :heavy_check_mark: Fetch all products
 Input:
 No parameters
 
-### Search a wishlist for a given client id
+### :heavy_check_mark: Search a wishlist for a given client id
 ```bash
 clientId: 
 ```
 
-### Add a product to the client's wishlist
+### :heavy_check_mark: Add a product to the client's wishlist
 Link clientId to productId
 
-### Deletes a product in client's wishlist
+### :heavy_check_mark: Deletes a product in client's wishlist
 Deletes a product in client's wishlist by id 
 
 Input: 
@@ -92,7 +92,7 @@ Input:
 clientId: 
 productId:
 ```
-### Search a product by name
+### :heavy_check_mark: Search a product by name
 Input:
 ```bash
 clientId: 
