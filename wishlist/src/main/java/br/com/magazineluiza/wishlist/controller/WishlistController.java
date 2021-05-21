@@ -7,6 +7,8 @@ import br.com.magazineluiza.wishlist.entity.Product;
 import br.com.magazineluiza.wishlist.service.WishlistService;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
+
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,7 @@ public class WishlistController {
   @ApiOperation(value = "Returns wishlist for a given client id")
   @GetMapping("{clientId}")
   @ResponseStatus(HttpStatus.OK)
-  public ResponseEntity<List<ProductDTO>> getProdutosByClientId(@PathVariable(value = "clientId") Integer clientId) {
+  public ResponseEntity<List<ProductDTO>> getProdutosBy(@PathVariable(value = "clientId") Integer clientId) {
     return wishlistService.getProductsBy(clientId);
   }
 
@@ -46,7 +48,7 @@ public class WishlistController {
   @PostMapping("/{clientId}/{productId}")
   @ResponseStatus(HttpStatus.CREATED)
   public ClientDTO addProduct(@PathVariable("clientId") Integer clientId,
-                              @PathVariable("productId") Integer productId) {
+                              @PathVariable("productId") Integer productId) throws NotFoundException {
     return wishlistService.addProduct(clientId, productId);
   }
 

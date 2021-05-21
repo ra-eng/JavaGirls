@@ -10,14 +10,16 @@ import br.com.magazineluiza.wishlist.mapper.ClientMapper;
 import br.com.magazineluiza.wishlist.mapper.ProductMapper;
 import br.com.magazineluiza.wishlist.repository.ClientRepository;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javassist.NotFoundException;
-import org.slf4j.LoggerFactory;
+import lombok.SneakyThrows;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.NoResultException;
 
 @Service
 public class WishlistService {
@@ -37,12 +39,31 @@ public class WishlistService {
   @Autowired
   private ClientRepository clientRepository;
 
-  public ClientDTO addProduct(Integer clientId, Integer productId) {
+  public ResponseEntity<List<ProductDTO>> getProductsBy(Integer clientId) {
+    ClientDTO client = clientMapper.toClientDTO(clientService.findBy(clientId));
+    if (client == null) throw new NullPointerException("Client not found.");
+    return new ResponseEntity<List<ProductDTO>>(productMapper.toProductDTO(client.getProducts()),
+            HttpStatus.OK);
+  }
+
+  public ResponseEntity<List<ProductDTO>> getProductsByName(String productName, Integer clientId) {
+    ClientDTO client = clientMapper.toClientDTO(clientService.findBy(clientId));
+    if (client == null) throw new NullPointerException("Client not found.");
+
+    List<ProductDTO> products = productMapper.toProductDTO(client.getProducts());
+    if (products.size() == 0) throw new NoResultException("Empty Wishlist.");
+
+    products = products.stream().filter(p -> p.getName()
+            .toLowerCase().contains(productName.toLowerCase())).collect(Collectors.toList());
+
+    return new ResponseEntity<>(products, HttpStatus.OK);
+  }
+
+  public ClientDTO addProduct(Integer clientId, Integer productId) throws NotFoundException {
     int maximumProducts = 20;
     Client client = null;
     Product product = null;
 
-    try {
       client = clientService.findBy(clientId);
       if (client == null) throw new NotFoundException("Client not found.");
 
@@ -61,17 +82,6 @@ public class WishlistService {
 
       client.addProduct(product);
       return clientMapper.toClientDTO(clientService.addClient(client));
-    } catch (RuntimeException | NotFoundException e) {
-
-    }
-    return clientMapper.toClientDTO(client);
-  }
-
-  public ResponseEntity<List<ProductDTO>> getProductsBy(Integer clientId) {
-    ClientDTO client = clientMapper.toClientDTO(clientService.findBy(clientId));
-    if (client == null) throw new NullPointerException("Client not found.");
-    return new ResponseEntity<List<ProductDTO>>(productMapper.toProductDTO(client.getProducts()),
-            HttpStatus.OK);
   }
 
   public ResponseEntity<?> deleteProduct(Integer clientId, Integer productId) {
@@ -96,14 +106,5 @@ public class WishlistService {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-  }
-
-  public ResponseEntity<List<ProductDTO>> getProductsByName(String productName, Integer clientId) {
-    ClientDTO clientDTO = clientMapper.toClientDTO(clientService.findBy(clientId));
-    List<ProductDTO> products = productMapper.toProductDTO(clientDTO.getProducts());
-    List<ProductDTO> collect = products.stream().filter(p -> p.getName()
-        .toLowerCase().contains(productName.toLowerCase())).collect(Collectors.toList());
-
-    return new ResponseEntity<>(collect, HttpStatus.OK);
   }
 }
