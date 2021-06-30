@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @ApiOperation(value = "/wishlist", tags = "Wishlist Controller")
 @RestController
-@RequestMapping"/wish(list")
+@RequestMapping("/wishlist")
 public class WishlistController {
 
   @Autowired
